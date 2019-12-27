@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PetcityMicroserviceApplication {
+public class PetCityMicroserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PetcityMicroserviceApplication.class, args);
+		SpringApplication.run(PetCityMicroserviceApplication.class, args);
 	}
-
 }
