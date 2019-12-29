@@ -1,41 +1,25 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.dto;
 
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.OptimisticLocking;
-import org.hibernate.annotations.SelectBeforeUpdate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import java.math.BigInteger;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static org.hibernate.annotations.OptimisticLockType.DIRTY;
-
-@Entity(name = "company")
-@OptimisticLocking(type = DIRTY)
-@DynamicUpdate
-@SelectBeforeUpdate
-public class Company extends CommonData {
+public class CompanyDto extends CommonDataDto {
   
-  @NaturalId
   private String document;
   private String name;
   private boolean paid;
   private String photo;
-  @Column(name = "initialcustomid")
   private BigInteger initialCustomId;
-  @Column(name = "actualcustomid")
   private BigInteger actualCustomId;
   private byte[] photoBlob;
   
-  public Company() {
+  public CompanyDto() {
     super();
   }
   
-  public Company(Builder builder) {
+  public CompanyDto(Builder builder) {
     super(builder.id, builder.creation, builder.enabled);
     this.document = builder.document;
     this.name = builder.name;
@@ -80,7 +64,7 @@ public class Company extends CommonData {
     if (o == null || getClass() != o.getClass()) return false;
     if (!super.equals(o)) return false;
     
-    Company company = (Company) o;
+    CompanyDto company = (CompanyDto) o;
     
     if (paid != company.paid) return false;
     if (!document.equals(company.document)) return false;
@@ -121,7 +105,7 @@ public class Company extends CommonData {
     return new Builder();
   }
   
-  public static Builder builder(Company company) {
+  public static Builder builder(CompanyDto company) {
     return new Builder(company);
   }
   
@@ -142,7 +126,7 @@ public class Company extends CommonData {
       super();
     }
     
-    private Builder(Company company) {
+    private Builder(CompanyDto company) {
       id(company.getId())
         .document(company.document)
         .name(company.name)
@@ -205,8 +189,8 @@ public class Company extends CommonData {
       return this;
     }
     
-    public Company build() {
-      return new Company(this);
+    public CompanyDto build() {
+      return new CompanyDto(this);
     }
   }
 }

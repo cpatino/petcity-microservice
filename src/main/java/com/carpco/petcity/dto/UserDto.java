@@ -1,43 +1,24 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.dto;
 
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.OptimisticLocking;
-import org.hibernate.annotations.SelectBeforeUpdate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.math.BigInteger;
 import java.time.LocalTime;
 import java.util.Objects;
 
-import static org.hibernate.annotations.OptimisticLockType.DIRTY;
-
-@Entity(name = "user")
-@OptimisticLocking(type = DIRTY)
-@DynamicUpdate
-@SelectBeforeUpdate
-public class User extends CommonData {
+public class UserDto extends CommonDataDto {
   
-  @NaturalId
   private String document;
   private String name;
-  @Column(name = "lastname")
   private String lastName;
   private String phone;
   private String email;
   private String password;
-  @ManyToOne
-  @JoinColumn(name = "idcompany")
-  private Company company;
+  private CompanyDto company;
   
-  public User() {
+  public UserDto() {
     super();
   }
   
-  public User(Builder builder) {
+  public UserDto(Builder builder) {
     super(builder.id, builder.creation, builder.enabled);
     this.document = builder.document;
     this.name = builder.name;
@@ -72,7 +53,7 @@ public class User extends CommonData {
     return password;
   }
   
-  public Company getCompany() {
+  public CompanyDto getCompany() {
     return company;
   }
   
@@ -82,15 +63,15 @@ public class User extends CommonData {
     if (o == null || getClass() != o.getClass()) return false;
     if (!super.equals(o)) return false;
     
-    User user = (User) o;
+    UserDto userDto = (UserDto) o;
     
-    if (!document.equals(user.document)) return false;
-    if (!name.equals(user.name)) return false;
-    if (!lastName.equals(user.lastName)) return false;
-    if (!phone.equals(user.phone)) return false;
-    if (!Objects.equals(email, user.email)) return false;
-    if (!Objects.equals(password, user.password)) return false;
-    return company.equals(user.company);
+    if (!document.equals(userDto.document)) return false;
+    if (!name.equals(userDto.name)) return false;
+    if (!lastName.equals(userDto.lastName)) return false;
+    if (!phone.equals(userDto.phone)) return false;
+    if (!Objects.equals(email, userDto.email)) return false;
+    if (!Objects.equals(password, userDto.password)) return false;
+    return company.equals(userDto.company);
   }
   
   @Override
@@ -123,8 +104,8 @@ public class User extends CommonData {
     return new Builder();
   }
   
-  public static Builder builder(User user) {
-    return new Builder(user);
+  public static Builder builder(UserDto userDto) {
+    return new Builder(userDto);
   }
   
   public static class Builder {
@@ -136,7 +117,7 @@ public class User extends CommonData {
     private String phone;
     private String email;
     private String password;
-    private Company company;
+    private CompanyDto company;
     private LocalTime creation;
     private boolean enabled;
     
@@ -144,17 +125,17 @@ public class User extends CommonData {
       super();
     }
     
-    private Builder(User user) {
-      id(user.getId())
-        .document(user.document)
-        .name(user.name)
-        .lastName(user.lastName)
-        .phone(user.phone)
-        .email(user.email)
-        .password(user.password)
-        .company(user.company)
-        .creation(user.getCreation())
-        .enabled(user.isEnabled());
+    private Builder(UserDto userDto) {
+      id(userDto.getId())
+        .document(userDto.document)
+        .name(userDto.name)
+        .lastName(userDto.lastName)
+        .phone(userDto.phone)
+        .email(userDto.email)
+        .password(userDto.password)
+        .company(userDto.company)
+        .creation(userDto.getCreation())
+        .enabled(userDto.isEnabled());
     }
     
     public Builder id(BigInteger id) {
@@ -192,7 +173,7 @@ public class User extends CommonData {
       return this;
     }
     
-    public Builder company(Company company) {
+    public Builder company(CompanyDto company) {
       this.company = company;
       return this;
     }
@@ -207,8 +188,8 @@ public class User extends CommonData {
       return this;
     }
     
-    public User build() {
-      return new User(this);
+    public UserDto build() {
+      return new UserDto(this);
     }
   }
 }
