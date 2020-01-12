@@ -1,5 +1,7 @@
 package com.carpco.petcity.dto;
 
+import com.carpco.petcity.model.User;
+
 import java.math.BigInteger;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -27,6 +29,17 @@ public class UserDto extends CommonDataDto {
     this.email = builder.email;
     this.password = builder.password;
     this.company = builder.company;
+  }
+  
+  public UserDto(User user) {
+    super(user.getId(), user.getCreation(), user.isEnabled());
+    this.document = user.getDocument();
+    this.name = user.getName();
+    this.lastName = user.getLastName();
+    this.phone = user.getPhone();
+    this.email = user.getEmail();
+    this.password = user.getPassword();
+    this.company = new CompanyDto(user.getCompany());
   }
   
   public String getDocument() {

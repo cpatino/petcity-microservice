@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.math.BigInteger;
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.Objects;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
@@ -29,7 +28,6 @@ public class Company extends CommonData {
   private BigInteger initialCustomId;
   @Column(name = "actualcustomid")
   private BigInteger actualCustomId;
-  private byte[] photoBlob;
   
   public Company() {
     super();
@@ -43,7 +41,6 @@ public class Company extends CommonData {
     this.photo = builder.photo;
     this.initialCustomId = builder.initialCustomId;
     this.actualCustomId = builder.actualCustomId;
-    this.photoBlob = builder.photoBlob;
   }
   
   public String getDocument() {
@@ -70,10 +67,6 @@ public class Company extends CommonData {
     return actualCustomId;
   }
   
-  public byte[] getPhotoBlob() {
-    return photoBlob;
-  }
-  
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -87,8 +80,7 @@ public class Company extends CommonData {
     if (!name.equals(company.name)) return false;
     if (!Objects.equals(photo, company.photo)) return false;
     if (!Objects.equals(initialCustomId, company.initialCustomId)) return false;
-    if (!Objects.equals(actualCustomId, company.actualCustomId)) return false;
-    return Arrays.equals(photoBlob, company.photoBlob);
+    return Objects.equals(actualCustomId, company.actualCustomId);
   }
   
   @Override
@@ -100,7 +92,6 @@ public class Company extends CommonData {
     result = 31 * result + (photo != null ? photo.hashCode() : 0);
     result = 31 * result + (initialCustomId != null ? initialCustomId.hashCode() : 0);
     result = 31 * result + (actualCustomId != null ? actualCustomId.hashCode() : 0);
-    result = 31 * result + Arrays.hashCode(photoBlob);
     return result;
   }
   
@@ -113,7 +104,6 @@ public class Company extends CommonData {
       ", photo='" + photo + '\'' +
       ", initialCustomId=" + initialCustomId +
       ", actualCustomId=" + actualCustomId +
-      ", photoBlob=" + Arrays.toString(photoBlob) +
       "} " + super.toString();
   }
   
@@ -136,7 +126,6 @@ public class Company extends CommonData {
     private BigInteger actualCustomId;
     private LocalTime creation;
     private boolean enabled;
-    private byte[] photoBlob;
     
     private Builder() {
       super();
@@ -151,8 +140,7 @@ public class Company extends CommonData {
         .initialCustomId(company.initialCustomId)
         .actualCustomId(company.actualCustomId)
         .creation(company.getCreation())
-        .enabled(company.isEnabled())
-        .photoBlob(company.photoBlob);
+        .enabled(company.isEnabled());
     }
     
     public Builder id(BigInteger id) {
@@ -197,11 +185,6 @@ public class Company extends CommonData {
     
     public Builder enabled(boolean enabled) {
       this.enabled = enabled;
-      return this;
-    }
-    
-    public Builder photoBlob(byte[] photoBlob) {
-      this.photoBlob = photoBlob;
       return this;
     }
     

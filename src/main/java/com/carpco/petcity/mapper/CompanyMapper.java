@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class CompanyMapper implements Mapper<Company, CompanyDto> {
   
   @Override
-  public Company toDbo(CompanyDto companyDto) {
+  public Company map(CompanyDto companyDto) {
     return Company.builder()
       .actualCustomId(companyDto.getActualCustomId())
       .creation(companyDto.getCreation())
@@ -19,23 +19,6 @@ public class CompanyMapper implements Mapper<Company, CompanyDto> {
       .name(companyDto.getName())
       .paid(companyDto.isPaid())
       .photo(companyDto.getPhoto())
-      .photoBlob(companyDto.getPhotoBlob())
-      .build();
-  }
-  
-  @Override
-  public CompanyDto toDto(Company company) {
-    return CompanyDto.builder()
-      .actualCustomId(company.getActualCustomId())
-      .creation(company.getCreation())
-      .document(company.getDocument())
-      .enabled(company.isEnabled())
-      .id(company.getId())
-      .initialCustomId(company.getInitialCustomId())
-      .name(company.getName())
-      .paid(company.isPaid())
-      .photo(company.getPhoto())
-      .photoBlob(company.getPhotoBlob())
       .build();
   }
 }

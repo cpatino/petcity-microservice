@@ -1,8 +1,9 @@
 package com.carpco.petcity.dto;
 
+import com.carpco.petcity.model.Company;
+
 import java.math.BigInteger;
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class CompanyDto extends CommonDataDto {
@@ -13,7 +14,6 @@ public class CompanyDto extends CommonDataDto {
   private String photo;
   private BigInteger initialCustomId;
   private BigInteger actualCustomId;
-  private byte[] photoBlob;
   
   public CompanyDto() {
     super();
@@ -27,7 +27,16 @@ public class CompanyDto extends CommonDataDto {
     this.photo = builder.photo;
     this.initialCustomId = builder.initialCustomId;
     this.actualCustomId = builder.actualCustomId;
-    this.photoBlob = builder.photoBlob;
+  }
+  
+  public CompanyDto(Company company) {
+    super(company.getId(), company.getCreation(), company.isEnabled());
+    this.document = company.getDocument();
+    this.name = company.getName();
+    this.paid = company.isPaid();
+    this.photo = company.getPhoto();
+    this.initialCustomId = company.getInitialCustomId();
+    this.actualCustomId = company.getActualCustomId();
   }
   
   public String getDocument() {
@@ -54,25 +63,20 @@ public class CompanyDto extends CommonDataDto {
     return actualCustomId;
   }
   
-  public byte[] getPhotoBlob() {
-    return photoBlob;
-  }
-  
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     if (!super.equals(o)) return false;
     
-    CompanyDto company = (CompanyDto) o;
+    CompanyDto that = (CompanyDto) o;
     
-    if (paid != company.paid) return false;
-    if (!document.equals(company.document)) return false;
-    if (!name.equals(company.name)) return false;
-    if (!Objects.equals(photo, company.photo)) return false;
-    if (!Objects.equals(initialCustomId, company.initialCustomId)) return false;
-    if (!Objects.equals(actualCustomId, company.actualCustomId)) return false;
-    return Arrays.equals(photoBlob, company.photoBlob);
+    if (paid != that.paid) return false;
+    if (!document.equals(that.document)) return false;
+    if (!name.equals(that.name)) return false;
+    if (!Objects.equals(photo, that.photo)) return false;
+    if (!Objects.equals(initialCustomId, that.initialCustomId)) return false;
+    return Objects.equals(actualCustomId, that.actualCustomId);
   }
   
   @Override
@@ -84,7 +88,6 @@ public class CompanyDto extends CommonDataDto {
     result = 31 * result + (photo != null ? photo.hashCode() : 0);
     result = 31 * result + (initialCustomId != null ? initialCustomId.hashCode() : 0);
     result = 31 * result + (actualCustomId != null ? actualCustomId.hashCode() : 0);
-    result = 31 * result + Arrays.hashCode(photoBlob);
     return result;
   }
   
@@ -97,7 +100,6 @@ public class CompanyDto extends CommonDataDto {
       ", photo='" + photo + '\'' +
       ", initialCustomId=" + initialCustomId +
       ", actualCustomId=" + actualCustomId +
-      ", photoBlob=" + Arrays.toString(photoBlob) +
       "} " + super.toString();
   }
   
@@ -120,7 +122,6 @@ public class CompanyDto extends CommonDataDto {
     private BigInteger actualCustomId;
     private LocalTime creation;
     private boolean enabled;
-    private byte[] photoBlob;
     
     private Builder() {
       super();
@@ -135,8 +136,7 @@ public class CompanyDto extends CommonDataDto {
         .initialCustomId(company.initialCustomId)
         .actualCustomId(company.actualCustomId)
         .creation(company.getCreation())
-        .enabled(company.isEnabled())
-        .photoBlob(company.photoBlob);
+        .enabled(company.isEnabled());
     }
     
     public Builder id(BigInteger id) {
@@ -181,11 +181,6 @@ public class CompanyDto extends CommonDataDto {
     
     public Builder enabled(boolean enabled) {
       this.enabled = enabled;
-      return this;
-    }
-    
-    public Builder photoBlob(byte[] photoBlob) {
-      this.photoBlob = photoBlob;
       return this;
     }
     

@@ -20,17 +20,10 @@ public class CompanyMapperTest {
   }
   
   @Test
-  void toDbo() {
+  void whenMap_theReturnDAO() {
     CompanyDto companyDto = buildCompanyDto();
-    Company company = mapper.toDbo(companyDto);
+    Company company = mapper.map(companyDto);
     assertEquals(buildCompany(), company);
-  }
-  
-  @Test
-  void toDto() {
-    Company company = buildCompany();
-    CompanyDto companyDto = mapper.toDto(company);
-    assertEquals(buildCompanyDto(), companyDto);
   }
   
   private CompanyDto buildCompanyDto() {
@@ -44,7 +37,6 @@ public class CompanyMapperTest {
       .name("name")
       .paid(true)
       .photo("photo")
-      .photoBlob("photo".getBytes())
       .build();
   }
   
@@ -59,7 +51,6 @@ public class CompanyMapperTest {
       .name("name")
       .paid(true)
       .photo("photo")
-      .photoBlob("photo".getBytes())
       .build();
   }
 }

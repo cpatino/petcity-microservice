@@ -2,18 +2,21 @@ package com.carpco.petcity.mapper;
 
 import com.carpco.petcity.dto.UserDto;
 import com.carpco.petcity.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper implements Mapper<User, UserDto> {
   
-  @Autowired private CompanyMapper companyMapper;
+  private final CompanyMapper companyMapper;
+  
+  public UserMapper(CompanyMapper companyMapper) {
+    this.companyMapper = companyMapper;
+  }
   
   @Override
-  public User toDbo(UserDto userDto) {
+  public User map(UserDto userDto) {
     return User.builder()
-      .company(companyMapper.toDbo(userDto.getCompany()))
+      .company(companyMapper.map(userDto.getCompany()))
       .creation(userDto.getCreation())
       .document(userDto.getDocument())
       .email(userDto.getEmail())
@@ -23,22 +26,6 @@ public class UserMapper implements Mapper<User, UserDto> {
       .name(userDto.getName())
       .password(userDto.getPassword())
       .phone(userDto.getPhone())
-      .build();
-  }
-  
-  @Override
-  public UserDto toDto(User user) {
-    return UserDto.builder()
-      .company(companyMapper.toDto(user.getCompany()))
-      .creation(user.getCreation())
-      .document(user.getDocument())
-      .email(user.getEmail())
-      .enabled(user.isEnabled())
-      .id(user.getId())
-      .lastName(user.getLastName())
-      .name(user.getName())
-      .password(user.getPassword())
-      .phone(user.getPhone())
       .build();
   }
 }
