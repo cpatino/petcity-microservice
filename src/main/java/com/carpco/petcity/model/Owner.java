@@ -9,7 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
@@ -121,7 +121,7 @@ public class Owner extends CommonDataWithNameAndCompany {
   public static class Builder {
     
     private BigInteger id;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     private String document;
     private String name;
@@ -148,7 +148,7 @@ public class Owner extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

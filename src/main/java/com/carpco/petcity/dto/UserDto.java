@@ -2,19 +2,21 @@ package com.carpco.petcity.dto;
 
 import com.carpco.petcity.model.User;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class UserDto extends CommonDataDto {
   
-  private String document;
-  private String name;
-  private String lastName;
-  private String phone;
-  private String email;
-  private String password;
-  private CompanyDto company;
+  @NotBlank private String document;
+  @NotBlank private String name;
+  @NotBlank private String lastName;
+  @NotBlank private String phone;
+  @NotBlank private String email;
+  @NotBlank private String password;
+  @NotNull private CompanyDto company;
   
   public UserDto() {
     super();
@@ -131,7 +133,7 @@ public class UserDto extends CommonDataDto {
     private String email;
     private String password;
     private CompanyDto company;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     
     private Builder() {
@@ -191,7 +193,7 @@ public class UserDto extends CommonDataDto {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

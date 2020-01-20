@@ -6,7 +6,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.Entity;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
@@ -40,7 +40,7 @@ public class FoodBrand extends CommonDataWithNameAndCompany {
   public static class Builder {
     
     private BigInteger id;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     private String name;
     private Company company;
@@ -59,7 +59,7 @@ public class FoodBrand extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

@@ -8,7 +8,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
@@ -124,7 +124,7 @@ public class Company extends CommonData {
     private String photo;
     private BigInteger initialCustomId;
     private BigInteger actualCustomId;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     
     private Builder() {
@@ -178,7 +178,7 @@ public class Company extends CommonData {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

@@ -1,10 +1,11 @@
 package com.carpco.petcity.model;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -15,7 +16,8 @@ public abstract class CommonData {
   @GeneratedValue(strategy = IDENTITY)
   private BigInteger id;
   
-  private LocalTime creation;
+  @Column(insertable = false, updatable = false)
+  private LocalDateTime creation;
   
   private boolean enabled;
   
@@ -23,7 +25,7 @@ public abstract class CommonData {
     super();
   }
   
-  public CommonData(BigInteger id, LocalTime creation, boolean enabled) {
+  public CommonData(BigInteger id, LocalDateTime creation, boolean enabled) {
     super();
     this.id = id;
     this.creation = creation;
@@ -34,7 +36,7 @@ public abstract class CommonData {
     return id;
   }
   
-  public LocalTime getCreation() {
+  public LocalDateTime getCreation() {
     return creation;
   }
   

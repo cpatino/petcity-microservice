@@ -5,7 +5,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class CommonDataWithCompany extends CommonData {
@@ -19,7 +19,7 @@ public abstract class CommonDataWithCompany extends CommonData {
     super();
   }
   
-  public CommonDataWithCompany(BigInteger id, LocalTime creation, boolean enabled, Company company) {
+  public CommonDataWithCompany(BigInteger id, LocalDateTime creation, boolean enabled, Company company) {
     super(id, creation, enabled);
     this.company = company;
   }

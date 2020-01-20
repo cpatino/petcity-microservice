@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static java.time.LocalTime.MIDNIGHT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +31,7 @@ public class CompanyMapperTest {
   private CompanyDto buildCompanyDto() {
     return CompanyDto.builder()
       .actualCustomId(BigInteger.valueOf(1))
-      .creation(MIDNIGHT)
+      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
       .document("123-456-789")
       .enabled(true)
       .id(BigInteger.valueOf(1))
@@ -43,7 +45,7 @@ public class CompanyMapperTest {
   private Company buildCompany() {
     return Company.builder()
       .actualCustomId(BigInteger.valueOf(1))
-      .creation(MIDNIGHT)
+      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
       .document("123-456-789")
       .enabled(true)
       .id(BigInteger.valueOf(1))

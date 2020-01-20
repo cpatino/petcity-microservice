@@ -1,32 +1,38 @@
 package com.carpco.petcity.controller;
 
+import com.carpco.petcity.dto.CompanyDto;
 import com.carpco.petcity.dto.LoginDto;
-import com.carpco.petcity.model.Company;
-import com.carpco.petcity.model.User;
+import com.carpco.petcity.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigInteger;
 import java.util.Optional;
 
-import static java.time.LocalTime.MIDNIGHT;
+import static com.carpco.petcity.util.TestDtoUtils.*;
+import static com.carpco.petcity.util.TestModelUtils.COMPANY_2;
+import static com.carpco.petcity.util.TestModelUtils.USER_2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 public class UserControllerTest {
   
-  @Autowired private UserController userController;
+  private final UserController userController;
+  
+  @Autowired
+  public UserControllerTest(UserController userController) {
+    this.userController = userController;
+  }
   
   @Test
   public void whenLoginWithAKnownUser_thenReturnUserData() {
     Optional.of(new LoginDto("test@test.test", "password"))
       .map(userController::login)
       .ifPresent(userDtoResult -> {
-        assertThat(userDtoResult).isEqualToIgnoringGivenFields(buildUser(), "creation", "company");
-        assertThat(userDtoResult.getCompany()).isEqualToIgnoringGivenFields(buildCompany(), "creation");
+        assertThat(userDtoResult).isEqualToIgnoringGivenFields(USER_DTO_1, "creation", "company");
+        assertThat(userDtoResult.getCompany()).isEqualToIgnoringGivenFields(COMPANY_DTO_1, "creation");
       });
   }
   
@@ -36,31 +42,13 @@ public class UserControllerTest {
       .ifPresent(given -> assertThrows(ResponseStatusException.class, () -> userController.login(given)));
   }
   
-  private User buildUser() {
-    return User.builder()
-      .creation(MIDNIGHT)
-      .document("123456789")
-      .email("test@test.test")
-      .enabled(true)
-      .id(BigInteger.valueOf(1))
-      .lastName("lastName")
-      .name("name")
-      .password("password")
-      .phone("987654321")
-      .build();
-  }
-  
-  private Company buildCompany() {
-    return Company.builder()
-      .actualCustomId(BigInteger.valueOf(11))
-      .creation(MIDNIGHT)
-      .document("123-456-789")
-      .enabled(true)
-      .id(BigInteger.valueOf(1))
-      .initialCustomId(BigInteger.valueOf(10))
-      .name("name")
-      .paid(true)
-      .photo("photo")
-      .build();
+  @Test
+  public void givenCreate_whenCallWithUserDto_thenCreateNewUser() {
+    Optional.of(USER_DTO_2)
+      .map(userController::create)
+      .ifPresent(userDtoResult -> {
+        assertThat(userDtoResult).isEqualToIgnoringGivenFields(new UserDto(USER_2), "creation", "company");
+        assertThat(userDtoResult.getCompany()).isEqualToIgnoringGivenFields(new CompanyDto(COMPANY_2), "creation");
+      });
   }
 }

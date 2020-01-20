@@ -2,14 +2,15 @@ package com.carpco.petcity.dto;
 
 import com.carpco.petcity.model.Company;
 
+import javax.validation.constraints.NotBlank;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class CompanyDto extends CommonDataDto {
   
-  private String document;
-  private String name;
+  @NotBlank private String document;
+  @NotBlank private String name;
   private boolean paid;
   private String photo;
   private BigInteger initialCustomId;
@@ -120,7 +121,7 @@ public class CompanyDto extends CommonDataDto {
     private String photo;
     private BigInteger initialCustomId;
     private BigInteger actualCustomId;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     
     private Builder() {
@@ -174,7 +175,7 @@ public class CompanyDto extends CommonDataDto {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

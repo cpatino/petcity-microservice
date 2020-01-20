@@ -1,19 +1,19 @@
 package com.carpco.petcity.dto;
 
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public abstract class CommonDataDto {
   
   private BigInteger id;
-  private LocalTime creation;
+  private LocalDateTime creation;
   private boolean enabled;
   
   public CommonDataDto() {
     super();
   }
   
-  public CommonDataDto(BigInteger id, LocalTime creation, boolean enabled) {
+  public CommonDataDto(BigInteger id, LocalDateTime creation, boolean enabled) {
     super();
     this.id = id;
     this.creation = creation;
@@ -24,7 +24,7 @@ public abstract class CommonDataDto {
     return id;
   }
   
-  public LocalTime getCreation() {
+  public LocalDateTime getCreation() {
     return creation;
   }
   

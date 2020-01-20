@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
@@ -84,7 +84,7 @@ public class ClinicHistory extends CommonDataWithCompany {
   public static class Builder {
     
     private BigInteger id;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     private Pet pet;
     private Company company;
@@ -104,7 +104,7 @@ public class ClinicHistory extends CommonDataWithCompany {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -15,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Validated
 public class UserController {
   
-  private final Logger log = LoggerFactory.getLogger(UserController.class);
+  private static final Logger log = LoggerFactory.getLogger(UserController.class);
   private final UserService userService;
   
   public UserController(UserService userService) {
@@ -23,8 +25,14 @@ public class UserController {
   }
   
   @GetMapping(value = "/login", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-  public UserDto login(@RequestBody LoginDto login) {
+  public UserDto login(@RequestBody @Valid LoginDto login) {
     log.info("Checking login...");
     return userService.login(login);
+  }
+  
+  @PostMapping(value = {"", "/"}, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+  public UserDto create(@RequestBody @Valid UserDto userDto) {
+    log.info("Trying to save a new user information");
+    return userService.create(userDto);
   }
 }

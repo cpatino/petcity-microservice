@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 
@@ -180,7 +181,7 @@ public class Pet extends CommonDataWithNameAndCompany {
   public static class Builder {
     
     private BigInteger id;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     private String name;
     private String color;
@@ -213,7 +214,7 @@ public class Pet extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

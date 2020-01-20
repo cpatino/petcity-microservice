@@ -10,6 +10,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static java.time.LocalTime.MIDNIGHT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +38,7 @@ public class UserMapperTest {
   private User buildUser() {
     return User.builder()
       .company(buildCompany())
-      .creation(MIDNIGHT)
+      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
       .document("123456789")
       .email("test@test.test")
       .enabled(true)
@@ -51,7 +53,7 @@ public class UserMapperTest {
   private Company buildCompany() {
     return Company.builder()
       .actualCustomId(BigInteger.valueOf(1))
-      .creation(MIDNIGHT)
+      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
       .document("123-456-789")
       .enabled(true)
       .id(BigInteger.valueOf(1))
@@ -65,7 +67,7 @@ public class UserMapperTest {
   private UserDto buildUserDto() {
     return UserDto.builder()
       .company(buildCompanyDto())
-      .creation(MIDNIGHT)
+      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
       .document("123456789")
       .email("test@test.test")
       .enabled(true)
@@ -80,7 +82,7 @@ public class UserMapperTest {
   private CompanyDto buildCompanyDto() {
     return CompanyDto.builder()
       .actualCustomId(BigInteger.valueOf(1))
-      .creation(MIDNIGHT)
+      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
       .document("123-456-789")
       .enabled(true)
       .id(BigInteger.valueOf(1))

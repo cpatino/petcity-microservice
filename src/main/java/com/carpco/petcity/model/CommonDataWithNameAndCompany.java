@@ -3,7 +3,7 @@ package com.carpco.petcity.model;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class CommonDataWithNameAndCompany extends CommonDataWithCompany {
@@ -15,7 +15,7 @@ public abstract class CommonDataWithNameAndCompany extends CommonDataWithCompany
     super();
   }
   
-  public CommonDataWithNameAndCompany(BigInteger id, LocalTime creation, boolean enabled, String name, Company company) {
+  public CommonDataWithNameAndCompany(BigInteger id, LocalDateTime creation, boolean enabled, String name, Company company) {
     super(id, creation, enabled, company);
     this.name = name;
   }

@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
@@ -73,7 +73,7 @@ public class Breed extends CommonDataWithNameAndCompany {
   public static class Builder {
     
     private BigInteger id;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     private String name;
     private PetType petType;
@@ -93,7 +93,7 @@ public class Breed extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }

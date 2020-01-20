@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
@@ -28,7 +28,7 @@ public class Notification extends CommonData {
   private String message;
   @Column(name = "notificationdate")
   @NotNull(message = "La fecha es obligatoria")
-  private LocalTime notificationDate;
+  private LocalDateTime notificationDate;
   @ManyToOne
   @JoinColumn(name = "idpet")
   @NotNull(message = "La mascota es obligatoria")
@@ -54,7 +54,7 @@ public class Notification extends CommonData {
     return message;
   }
   
-  public LocalTime getNotificationDate() {
+  public LocalDateTime getNotificationDate() {
     return notificationDate;
   }
   
@@ -111,11 +111,11 @@ public class Notification extends CommonData {
     }
     
     private BigInteger id;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     private String notificationTitle;
     private String message;
-    private LocalTime notificationDate;
+    private LocalDateTime notificationDate;
     private Pet pet;
     
     private Builder() {
@@ -133,7 +133,7 @@ public class Notification extends CommonData {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }
@@ -153,7 +153,7 @@ public class Notification extends CommonData {
       return this;
     }
     
-    public Builder notificationDate(LocalTime notificationDate) {
+    public Builder notificationDate(LocalDateTime notificationDate) {
       this.notificationDate = notificationDate;
       return this;
     }

@@ -10,9 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigInteger;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import static javax.persistence.CascadeType.PERSIST;
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
 @Entity(name = "user")
@@ -29,7 +30,7 @@ public class User extends CommonData {
   private String phone;
   private String email;
   private String password;
-  @ManyToOne
+  @ManyToOne(cascade = PERSIST)
   @JoinColumn(name = "idcompany")
   private Company company;
   
@@ -137,7 +138,7 @@ public class User extends CommonData {
     private String email;
     private String password;
     private Company company;
-    private LocalTime creation;
+    private LocalDateTime creation;
     private boolean enabled;
     
     private Builder() {
@@ -197,7 +198,7 @@ public class User extends CommonData {
       return this;
     }
     
-    public Builder creation(LocalTime creation) {
+    public Builder creation(LocalDateTime creation) {
       this.creation = creation;
       return this;
     }
