@@ -16,11 +16,12 @@ import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 @SelectBeforeUpdate
 public class FoodBrand extends CommonDataWithNameAndCompany {
   
+  //For hibernate
   public FoodBrand() {
     super();
   }
   
-  public FoodBrand(Builder builder) {
+  protected FoodBrand(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   

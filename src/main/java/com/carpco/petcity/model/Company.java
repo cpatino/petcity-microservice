@@ -29,11 +29,12 @@ public class Company extends CommonData {
   @Column(name = "actualcustomid")
   private BigInteger actualCustomId;
   
+  //For hibernate
   public Company() {
     super();
   }
   
-  public Company(Builder builder) {
+  protected Company(Builder builder) {
     super(builder.id, builder.creation, builder.enabled);
     this.document = builder.document;
     this.name = builder.name;

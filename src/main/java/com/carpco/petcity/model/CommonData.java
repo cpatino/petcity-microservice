@@ -25,7 +25,7 @@ public abstract class CommonData {
     super();
   }
   
-  public CommonData(BigInteger id, LocalDateTime creation, boolean enabled) {
+  protected CommonData(BigInteger id, LocalDateTime creation, boolean enabled) {
     super();
     this.id = id;
     this.creation = creation;

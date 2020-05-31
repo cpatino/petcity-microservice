@@ -20,7 +20,7 @@ public class PetType extends CommonDataWithNameAndCompany {
     super();
   }
   
-  public PetType(Builder builder) {
+  protected PetType(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   

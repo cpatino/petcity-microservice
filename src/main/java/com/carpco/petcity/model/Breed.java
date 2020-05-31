@@ -24,11 +24,12 @@ public class Breed extends CommonDataWithNameAndCompany {
   @NotNull(message = "La especie es obligatoria")
   private PetType petType;
   
+  //For hibernate
   public Breed() {
     super();
   }
   
-  public Breed(Builder builder) {
+  protected Breed(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
     this.petType = builder.petType;
   }

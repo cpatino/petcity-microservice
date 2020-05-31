@@ -15,7 +15,7 @@ public abstract class CommonDataWithNameAndCompany extends CommonDataWithCompany
     super();
   }
   
-  public CommonDataWithNameAndCompany(BigInteger id, LocalDateTime creation, boolean enabled, String name, Company company) {
+  protected CommonDataWithNameAndCompany(BigInteger id, LocalDateTime creation, boolean enabled, String name, Company company) {
     super(id, creation, enabled, company);
     this.name = name;
   }

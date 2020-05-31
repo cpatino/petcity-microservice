@@ -16,11 +16,12 @@ import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 @SelectBeforeUpdate
 public class Drenching extends CommonDataWithNameAndCompany {
   
+  //For hibernate
   public Drenching() {
     super();
   }
   
-  public Drenching(Builder builder) {
+  protected Drenching(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   

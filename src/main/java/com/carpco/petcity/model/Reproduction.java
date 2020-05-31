@@ -20,7 +20,7 @@ public class Reproduction extends CommonDataWithNameAndCompany {
     super();
   }
   
-  public Reproduction(Builder builder) {
+  protected Reproduction(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   

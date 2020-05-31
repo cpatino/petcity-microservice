@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
@@ -32,11 +33,12 @@ public class Owner extends CommonDataWithNameAndCompany {
   private String phone;
   private String phone2;
   
+  //For hibernate
   public Owner() {
     super();
   }
   
-  public Owner(Builder builder) {
+  protected Owner(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
     document = builder.document;
     lastName = builder.lastName;
@@ -80,10 +82,10 @@ public class Owner extends CommonDataWithNameAndCompany {
     
     if (!document.equals(owner.document)) return false;
     if (!lastName.equals(owner.lastName)) return false;
-    if (email != null ? !email.equals(owner.email) : owner.email != null) return false;
+    if (!Objects.equals(email, owner.email)) return false;
     if (!address.equals(owner.address)) return false;
     if (!phone.equals(owner.phone)) return false;
-    return phone2 != null ? phone2.equals(owner.phone2) : owner.phone2 == null;
+    return Objects.equals(phone2, owner.phone2);
   }
   
   @Override

@@ -34,11 +34,12 @@ public class Notification extends CommonData {
   @NotNull(message = "La mascota es obligatoria")
   private Pet pet;
   
+  //For hibernate
   public Notification() {
     super();
   }
   
-  public Notification(Builder builder) {
+  protected Notification(Builder builder) {
     super(builder.id, builder.creation, builder.enabled);
     notificationTitle = builder.notificationTitle;
     message = builder.message;

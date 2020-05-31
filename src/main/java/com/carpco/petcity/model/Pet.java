@@ -14,6 +14,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
@@ -56,7 +57,7 @@ public class Pet extends CommonDataWithNameAndCompany {
     super();
   }
   
-  public Pet(Builder builder) {
+  protected Pet(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
     color = builder.color;
     sex = builder.sex;
@@ -127,8 +128,8 @@ public class Pet extends CommonDataWithNameAndCompany {
     if (!sex.equals(pet.sex)) return false;
     if (!bornDate.equals(pet.bornDate)) return false;
     if (!bornPlace.equals(pet.bornPlace)) return false;
-    if (photo != null ? !photo.equals(pet.photo) : pet.photo != null) return false;
-    if (history != null ? !history.equals(pet.history) : pet.history != null) return false;
+    if (!Objects.equals(photo, pet.photo)) return false;
+    if (!Objects.equals(history, pet.history)) return false;
     if (!reproduction.equals(pet.reproduction)) return false;
     if (!petType.equals(pet.petType)) return false;
     if (!breed.equals(pet.breed)) return false;

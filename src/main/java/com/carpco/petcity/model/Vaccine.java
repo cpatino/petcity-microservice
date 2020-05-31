@@ -20,7 +20,7 @@ public class Vaccine extends CommonDataWithNameAndCompany {
     super();
   }
   
-  public Vaccine(Builder builder) {
+  protected Vaccine(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   

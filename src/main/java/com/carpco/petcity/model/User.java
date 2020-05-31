@@ -38,7 +38,7 @@ public class User extends CommonData {
     super();
   }
   
-  public User(Builder builder) {
+  protected User(Builder builder) {
     super(builder.id, builder.creation, builder.enabled);
     this.document = builder.document;
     this.name = builder.name;

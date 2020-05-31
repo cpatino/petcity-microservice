@@ -1,9 +1,9 @@
 package com.carpco.petcity.service;
 
-import com.carpco.petcity.dao.UserDao;
 import com.carpco.petcity.dto.LoginDto;
 import com.carpco.petcity.dto.UserDto;
 import com.carpco.petcity.mapper.UserMapper;
+import com.carpco.petcity.repository.UserRepository;
 import com.carpco.petcity.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,21 +23,21 @@ import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
   
-  @Mock private UserDao userDao;
+  @Mock private UserRepository userRepository;
   @Mock private UserMapper userMapper;
   private UserService userService;
   
   @BeforeEach
   public void setup() {
     MockitoAnnotations.initMocks(this);
-    userService = new UserServiceImpl(userDao, userMapper);
+    userService = new UserServiceImpl(userRepository, userMapper);
   }
   
   @Test
   public void whenLoginWithRightUserAndPassword_thenReturnUserData() {
     String userName = "xxx";
     String password = "xxx";
-    when(userDao.findByEmailAndPassword(userName, password)).thenReturn(USER_1);
+    when(userRepository.findByEmailAndPassword(userName, password)).thenReturn(Optional.of(USER_1));
     Optional.of(new LoginDto(userName, password))
       .map(userService::login)
       .ifPresent(userDtoResult -> assertEquals(USER_DTO_1, userDtoResult));
@@ -47,7 +47,7 @@ public class UserServiceTest {
   public void whenLoginWithWrongUserAndPassword_thenThrownException() {
     String userName = "xxx";
     String password = "xxx";
-    when(userDao.findByEmailAndPassword(userName, password)).thenReturn(null);
+    when(userRepository.findByEmailAndPassword(userName, password)).thenReturn(Optional.empty());
     Optional.of(new LoginDto(userName, password))
       .ifPresent(given -> assertThrows(ResponseStatusException.class, () -> userService.login(given)));
   }
@@ -55,7 +55,7 @@ public class UserServiceTest {
   @Test
   public void givenCreate_whenUserDtoIsValid_thenSaveData() {
     when(userMapper.map(USER_DTO_2)).thenReturn(USER_2);
-    when(userDao.save(USER_2)).thenReturn(USER_2);
+    when(userRepository.save(USER_2)).thenReturn(USER_2);
     Optional.of(USER_DTO_2)
       .map(userService::create)
       .ifPresent(userDtoResult -> assertEquals(new UserDto(USER_2), userDtoResult));

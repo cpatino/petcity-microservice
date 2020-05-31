@@ -27,11 +27,12 @@ public class ClinicHistory extends CommonDataWithCompany {
   @Column(name = "recordcustomid")
   private BigInteger recordCustomId;
   
+  //For hibernate
   public ClinicHistory() {
     super();
   }
   
-  public ClinicHistory(Builder builder) {
+  protected ClinicHistory(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.company);
     pet = builder.pet;
     recordCustomId = builder.recordCustomId;

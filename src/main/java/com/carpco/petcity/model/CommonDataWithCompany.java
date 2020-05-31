@@ -19,7 +19,7 @@ public abstract class CommonDataWithCompany extends CommonData {
     super();
   }
   
-  public CommonDataWithCompany(BigInteger id, LocalDateTime creation, boolean enabled, Company company) {
+  protected CommonDataWithCompany(BigInteger id, LocalDateTime creation, boolean enabled, Company company) {
     super(id, creation, enabled);
     this.company = company;
   }
