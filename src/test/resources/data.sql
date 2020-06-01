@@ -35,4 +35,5 @@ INSERT INTO company (id, document, name, paid, creation, enabled, photo, initial
 
 
 INSERT INTO user (id, document, name, lastname, phone, email, password, idcompany, creation, enabled) VALUES
-(1, '123456789', 'name', 'lastName', '987654321', 'test@test.test', 'password', 1, '2016-10-24 18:04:28', '1')
+(1, '123456789', 'name', 'lastName', '987654321', 'test@test.test', 'password', 1, '2016-10-24 18:04:28', '1'),
+(2, '987654321', 'name', 'lastName', '321654987', 'disabled@test.test', 'password', 1, '2016-10-24 18:04:28', '0');

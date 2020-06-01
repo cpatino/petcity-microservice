@@ -1,6 +1,5 @@
 package com.carpco.petcity.service;
 
-import com.carpco.petcity.dto.LoginDto;
 import com.carpco.petcity.dto.UserDto;
 import com.carpco.petcity.mapper.UserMapper;
 import com.carpco.petcity.repository.UserRepository;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -18,7 +16,6 @@ import static com.carpco.petcity.util.TestDtoUtils.USER_DTO_2;
 import static com.carpco.petcity.util.TestModelUtils.USER_1;
 import static com.carpco.petcity.util.TestModelUtils.USER_2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
@@ -38,18 +35,16 @@ public class UserServiceTest {
     String userName = "xxx";
     String password = "xxx";
     when(userRepository.findByEmailAndPassword(userName, password)).thenReturn(Optional.of(USER_1));
-    Optional.of(new LoginDto(userName, password))
-      .map(userService::login)
+    userService.login(userName, password)
       .ifPresent(userDtoResult -> assertEquals(USER_DTO_1, userDtoResult));
   }
   
   @Test
-  public void whenLoginWithWrongUserAndPassword_thenThrownException() {
+  public void whenLoginWithWrongUserAndPassword_thenReturnEmpty() {
     String userName = "xxx";
     String password = "xxx";
     when(userRepository.findByEmailAndPassword(userName, password)).thenReturn(Optional.empty());
-    Optional.of(new LoginDto(userName, password))
-      .ifPresent(given -> assertThrows(ResponseStatusException.class, () -> userService.login(given)));
+    assertEquals(Optional.empty(), userService.login(userName, password));
   }
   
   @Test
