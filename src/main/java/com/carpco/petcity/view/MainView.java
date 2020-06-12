@@ -1,13 +1,22 @@
 package com.carpco.petcity.view;
 
-import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.carpco.petcity.dto.UserDto;
+import com.carpco.petcity.service.SessionService;
+import com.carpco.petcity.view.layout.MainLayout;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@Route
-public class MainView extends VerticalLayout {
+@Component
+@Scope("prototype")
+@Route(value = "", layout = MainLayout.class)
+@PageTitle("Vet Soporte | dashboard")
+public class MainView extends Div {
   
-  public MainView() {
-    add(new Text("Welcome to MainView."));
+  public MainView(SessionService sessionService) {
+    add(new H4("Welcome " + sessionService.getSessionUser().map(UserDto::getName).orElse("") + "!"));
   }
 }
