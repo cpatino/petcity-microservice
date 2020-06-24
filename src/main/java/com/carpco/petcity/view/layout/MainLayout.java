@@ -1,5 +1,8 @@
 package com.carpco.petcity.view.layout;
 
+import com.carpco.petcity.constants.LoginConstants;
+import com.carpco.petcity.constants.RememberPasswordConstants;
+import com.carpco.petcity.constants.SignUpConstants;
 import com.carpco.petcity.dto.UserDto;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -22,8 +25,12 @@ public class MainLayout extends VerticalLayout implements RouterLayout, BeforeEn
   public void beforeEnter(BeforeEnterEvent event) {
     UserDto client = (UserDto) VaadinSession.getCurrent().getAttribute(CLIENT);
     String path = event.getLocation().getPath();
-    if (Objects.isNull(client) && !(path.contains("login") || path.contains("signup") || path.contains("password"))) {
-      event.forwardTo("login", path);
+    if (Objects.isNull(client) && !isNotSignedInPage(path)) {
+      event.forwardTo(LoginConstants.ROUTE, path);
     }
+  }
+  
+  private boolean isNotSignedInPage(String path) {
+    return path.contains(LoginConstants.ROUTE) || path.contains(SignUpConstants.ROUTE) || path.contains(RememberPasswordConstants.ROUTE);
   }
 }
