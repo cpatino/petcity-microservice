@@ -1,4 +1,4 @@
-package com.carpco.petcity.constants;
+package com.carpco.petcity.view.constants;
 
 public abstract class RememberPasswordConstants {
   

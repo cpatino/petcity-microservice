@@ -2,8 +2,6 @@ package com.carpco.petcity.view;
 
 import com.carpco.petcity.dto.UserDto;
 import com.carpco.petcity.service.admin.LoginService;
-import com.carpco.petcity.view.account.RememberPasswordView;
-import com.carpco.petcity.view.account.SignUpView;
 import com.carpco.petcity.view.component.ConfirmDialog;
 import com.carpco.petcity.view.layout.MainLayout;
 import com.vaadin.flow.component.HasValidation;
@@ -24,14 +22,14 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.carpco.petcity.constants.LoginConstants.*;
+import static com.carpco.petcity.view.constants.LoginConstants.*;
 import static com.vaadin.flow.component.Key.ENTER;
 
 @Component
 @Scope("prototype")
 @Route(value = ROUTE, layout = MainLayout.class)
 @PageTitle(PAGE_TITLE)
-public class LoginView extends VerticalLayout implements HasUrlParameter<String> {
+public class LoginView extends VerticalLayout implements HasUrlParameter<String>, AfterNavigationObserver {
   
   private static final Logger log = LoggerFactory.getLogger(LoginView.class);
   
@@ -49,12 +47,16 @@ public class LoginView extends VerticalLayout implements HasUrlParameter<String>
     emailField = buildEmailField();
     passwordPwf = buildPasswordField();
     location = "";
-    addComponents();
   }
   
   @Override
   public void setParameter(BeforeEvent beforeEvent, String parameter) {
     this.location = parameter;
+  }
+  
+  @Override
+  public void afterNavigation(AfterNavigationEvent afterNavigationEvent) {
+    addComponents();
   }
   
   protected void signIn(String userName, String password) {

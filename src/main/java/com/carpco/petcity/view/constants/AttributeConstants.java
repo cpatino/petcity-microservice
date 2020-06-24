@@ -1,4 +1,4 @@
-package com.carpco.petcity.view.config;
+package com.carpco.petcity.view.constants;
 
 public abstract class AttributeConstants {
   

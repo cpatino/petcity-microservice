@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static com.carpco.petcity.view.config.AttributeConstants.CLIENT;
+import static com.carpco.petcity.view.constants.AttributeConstants.CLIENT;
 
 @Service
 public class VaadinSessionServiceImpl implements SessionService {
