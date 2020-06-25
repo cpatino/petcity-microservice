@@ -1,4 +1,4 @@
-package com.carpco.petcity.service;
+package com.carpco.petcity.repository.service;
 
 import com.carpco.petcity.repository.model.User;
 

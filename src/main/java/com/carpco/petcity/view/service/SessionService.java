@@ -1,4 +1,4 @@
-package com.carpco.petcity.service;
+package com.carpco.petcity.view.service;
 
 import com.carpco.petcity.dto.SignUpUser;
 

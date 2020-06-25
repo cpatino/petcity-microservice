@@ -1,7 +1,8 @@
 package com.carpco.petcity.service;
 
 import com.carpco.petcity.repository.UserRepository;
-import com.carpco.petcity.service.impl.UserServiceImpl;
+import com.carpco.petcity.repository.service.UserService;
+import com.carpco.petcity.repository.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

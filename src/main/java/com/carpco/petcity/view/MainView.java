@@ -1,8 +1,8 @@
 package com.carpco.petcity.view;
 
 import com.carpco.petcity.dto.SignUpUser;
-import com.carpco.petcity.service.SessionService;
 import com.carpco.petcity.view.layout.MainLayout;
+import com.carpco.petcity.view.service.SessionService;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.router.PageTitle;

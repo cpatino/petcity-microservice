@@ -1,8 +1,8 @@
 package com.carpco.petcity.view;
 
 import com.carpco.petcity.dto.SignUpUser;
-import com.carpco.petcity.service.SessionService;
 import com.carpco.petcity.view.component.ConfirmDialog;
+import com.carpco.petcity.view.service.SessionService;
 import com.github.mvysny.kaributesting.v10.MockVaadin;
 import com.github.mvysny.kaributesting.v10.Routes;
 import org.junit.Before;

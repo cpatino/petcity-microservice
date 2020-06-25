@@ -1,8 +1,8 @@
-package com.carpco.petcity.service.impl;
+package com.carpco.petcity.repository.service.impl;
 
 import com.carpco.petcity.repository.UserRepository;
 import com.carpco.petcity.repository.model.User;
-import com.carpco.petcity.service.UserService;
+import com.carpco.petcity.repository.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

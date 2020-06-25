@@ -1,9 +1,10 @@
 package com.carpco.petcity.view;
 
 import com.carpco.petcity.dto.SignUpUser;
-import com.carpco.petcity.service.admin.LoginService;
+import com.carpco.petcity.service.LoginService;
 import com.carpco.petcity.view.component.ConfirmDialog;
 import com.carpco.petcity.view.layout.MainLayout;
+import com.carpco.petcity.view.service.SessionService;
 import com.vaadin.flow.component.HasValidation;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -35,15 +36,17 @@ public class LoginView extends VerticalLayout implements HasUrlParameter<String>
   
   private final transient ConfirmDialog confirmDialog;
   private final transient LoginService loginService;
+  private final transient SessionService sessionService;
   // UI Fields
   private final EmailField emailField;
   private final PasswordField passwordPwf;
   //Next navigation field
   private String location;
   
-  public LoginView(ConfirmDialog confirmDialog, LoginService loginService) {
+  public LoginView(ConfirmDialog confirmDialog, LoginService loginService, SessionService sessionService) {
     this.confirmDialog = confirmDialog;
     this.loginService = loginService;
+    this.sessionService = sessionService;
     emailField = buildEmailField();
     passwordPwf = buildPasswordField();
     location = "";
@@ -113,7 +116,7 @@ public class LoginView extends VerticalLayout implements HasUrlParameter<String>
   
   private void navigateToMain(SignUpUser user) {
     log.info("User={} sign in correctly at {}", user.getEmail(), LocalDateTime.now());
-    loginService.registerSessionUser(user);
+    sessionService.registerSessionUser(user);
     UI.getCurrent().navigate(location);
   }
   
