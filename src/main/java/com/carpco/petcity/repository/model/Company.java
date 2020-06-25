@@ -1,26 +1,40 @@
-package com.carpco.petcity.dto;
+package com.carpco.petcity.repository.model;
 
-import com.carpco.petcity.model.Company;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.OptimisticLocking;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class CompanyDto extends CommonDataDto {
+import static org.hibernate.annotations.OptimisticLockType.DIRTY;
+
+@Entity(name = "company")
+@OptimisticLocking(type = DIRTY)
+@DynamicUpdate
+@SelectBeforeUpdate
+public class Company extends CommonData {
   
-  @NotBlank private String document;
-  @NotBlank private String name;
+  @NaturalId
+  private String document;
+  private String name;
   private boolean paid;
   private String photo;
+  @Column(name = "initialcustomid")
   private BigInteger initialCustomId;
+  @Column(name = "actualcustomid")
   private BigInteger actualCustomId;
   
-  public CompanyDto() {
+  //For hibernate
+  public Company() {
     super();
   }
   
-  public CompanyDto(Builder builder) {
+  protected Company(Builder builder) {
     super(builder.id, builder.creation, builder.enabled);
     this.document = builder.document;
     this.name = builder.name;
@@ -28,16 +42,6 @@ public class CompanyDto extends CommonDataDto {
     this.photo = builder.photo;
     this.initialCustomId = builder.initialCustomId;
     this.actualCustomId = builder.actualCustomId;
-  }
-  
-  public CompanyDto(Company company) {
-    super(company.getId(), company.getCreation(), company.isEnabled());
-    this.document = company.getDocument();
-    this.name = company.getName();
-    this.paid = company.isPaid();
-    this.photo = company.getPhoto();
-    this.initialCustomId = company.getInitialCustomId();
-    this.actualCustomId = company.getActualCustomId();
   }
   
   public String getDocument() {
@@ -70,14 +74,14 @@ public class CompanyDto extends CommonDataDto {
     if (o == null || getClass() != o.getClass()) return false;
     if (!super.equals(o)) return false;
     
-    CompanyDto that = (CompanyDto) o;
+    Company company = (Company) o;
     
-    if (paid != that.paid) return false;
-    if (!document.equals(that.document)) return false;
-    if (!name.equals(that.name)) return false;
-    if (!Objects.equals(photo, that.photo)) return false;
-    if (!Objects.equals(initialCustomId, that.initialCustomId)) return false;
-    return Objects.equals(actualCustomId, that.actualCustomId);
+    if (paid != company.paid) return false;
+    if (!document.equals(company.document)) return false;
+    if (!name.equals(company.name)) return false;
+    if (!Objects.equals(photo, company.photo)) return false;
+    if (!Objects.equals(initialCustomId, company.initialCustomId)) return false;
+    return Objects.equals(actualCustomId, company.actualCustomId);
   }
   
   @Override
@@ -108,7 +112,7 @@ public class CompanyDto extends CommonDataDto {
     return new Builder();
   }
   
-  public static Builder builder(CompanyDto company) {
+  public static Builder builder(Company company) {
     return new Builder(company);
   }
   
@@ -128,7 +132,7 @@ public class CompanyDto extends CommonDataDto {
       super();
     }
     
-    private Builder(CompanyDto company) {
+    private Builder(Company company) {
       id(company.getId())
         .document(company.document)
         .name(company.name)
@@ -185,8 +189,8 @@ public class CompanyDto extends CommonDataDto {
       return this;
     }
     
-    public CompanyDto build() {
-      return new CompanyDto(this);
+    public Company build() {
+      return new Company(this);
     }
   }
 }

@@ -1,4 +1,4 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.repository.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OptimisticLocking;
@@ -10,32 +10,31 @@ import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
-@Entity(name = "drenching")
+@Entity(name = "reproduction")
 @OptimisticLocking(type = DIRTY)
 @DynamicUpdate
 @SelectBeforeUpdate
-public class Drenching extends CommonDataWithNameAndCompany {
+public class Reproduction extends CommonDataWithNameAndCompany {
   
-  //For hibernate
-  public Drenching() {
+  public Reproduction() {
     super();
   }
   
-  protected Drenching(Builder builder) {
+  protected Reproduction(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   
   @Override
   public String toString() {
-    return "Drenching{} " + super.toString();
+    return "Reproduction{} " + super.toString();
   }
   
   public static Builder builder() {
     return new Builder();
   }
   
-  public static Builder builder(Drenching drenching) {
-    return new Builder(drenching);
+  public static Builder builder(Reproduction reproduction) {
+    return new Builder(reproduction);
   }
   
   public static class Builder {
@@ -50,9 +49,9 @@ public class Drenching extends CommonDataWithNameAndCompany {
       super();
     }
     
-    private Builder(Drenching drenching) {
-      id(drenching.getId()).creation(drenching.getCreation()).enabled(drenching.isEnabled())
-        .name(drenching.getName()).company(drenching.getCompany());
+    private Builder(Reproduction reproduction) {
+      id(reproduction.getId()).creation(reproduction.getCreation()).enabled(reproduction.isEnabled())
+        .name(reproduction.getName()).company(reproduction.getCompany());
     }
     
     public Builder id(BigInteger id) {
@@ -80,8 +79,8 @@ public class Drenching extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public Drenching build() {
-      return new Drenching(this);
+    public Reproduction build() {
+      return new Reproduction(this);
     }
   }
 }

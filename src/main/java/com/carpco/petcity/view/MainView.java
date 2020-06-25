@@ -1,6 +1,6 @@
 package com.carpco.petcity.view;
 
-import com.carpco.petcity.dto.UserDto;
+import com.carpco.petcity.dto.SignUpUser;
 import com.carpco.petcity.service.SessionService;
 import com.carpco.petcity.view.layout.MainLayout;
 import com.vaadin.flow.component.html.Div;
@@ -17,6 +17,6 @@ import org.springframework.stereotype.Component;
 public class MainView extends Div {
   
   public MainView(SessionService sessionService) {
-    add(new H4("Welcome " + sessionService.getSessionUser().map(UserDto::getName).orElse("") + "!"));
+    add(new H4("Welcome " + sessionService.getSessionUser().map(SignUpUser::getFullName).orElse("") + "!"));
   }
 }

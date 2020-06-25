@@ -1,4 +1,4 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.repository.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OptimisticLocking;
@@ -10,32 +10,31 @@ import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
-@Entity(name = "foodbrand")
+@Entity(name = "vaccine")
 @OptimisticLocking(type = DIRTY)
 @DynamicUpdate
 @SelectBeforeUpdate
-public class FoodBrand extends CommonDataWithNameAndCompany {
+public class Vaccine extends CommonDataWithNameAndCompany {
   
-  //For hibernate
-  public FoodBrand() {
+  public Vaccine() {
     super();
   }
   
-  protected FoodBrand(Builder builder) {
+  protected Vaccine(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   
   @Override
   public String toString() {
-    return "FoodBrand{} " + super.toString();
+    return "Vaccine{} " + super.toString();
   }
   
   public static Builder builder() {
     return new Builder();
   }
   
-  public static Builder builder(FoodBrand foodBrand) {
-    return new Builder(foodBrand);
+  public static Builder builder(Vaccine vaccine) {
+    return new Builder(vaccine);
   }
   
   public static class Builder {
@@ -50,9 +49,9 @@ public class FoodBrand extends CommonDataWithNameAndCompany {
       super();
     }
     
-    private Builder(FoodBrand foodBrand) {
-      id(foodBrand.getId()).creation(foodBrand.getCreation()).enabled(foodBrand.isEnabled())
-        .name(foodBrand.getName()).company(foodBrand.getCompany());
+    private Builder(Vaccine vaccine) {
+      id(vaccine.getId()).creation(vaccine.getCreation()).enabled(vaccine.isEnabled())
+        .name(vaccine.getName()).company(vaccine.getCompany());
     }
     
     public Builder id(BigInteger id) {
@@ -80,8 +79,8 @@ public class FoodBrand extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public FoodBrand build() {
-      return new FoodBrand(this);
+    public Vaccine build() {
+      return new Vaccine(this);
     }
   }
 }

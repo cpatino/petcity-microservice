@@ -1,4 +1,4 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.repository.model;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

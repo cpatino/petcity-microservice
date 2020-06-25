@@ -1,6 +1,6 @@
 package com.carpco.petcity.repository;
 
-import com.carpco.petcity.model.User;
+import com.carpco.petcity.repository.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

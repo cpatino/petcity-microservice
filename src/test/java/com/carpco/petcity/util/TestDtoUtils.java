@@ -1,63 +1,40 @@
 package com.carpco.petcity.util;
 
-import com.carpco.petcity.dto.CompanyDto;
-import com.carpco.petcity.dto.UserDto;
+import com.carpco.petcity.dto.SignUpUser;
+import com.carpco.petcity.dto.Veterinary;
 
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import static java.time.LocalTime.MIDNIGHT;
-
-public class TestDtoUtils {
+public abstract class TestDtoUtils {
   
   private TestDtoUtils() {
     super();
   }
   
-  public static final CompanyDto COMPANY_DTO_1 = CompanyDto.builder()
-    .actualCustomId(BigInteger.valueOf(11))
-    .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-    .document("123-456-789")
-    .enabled(true)
-    .id(BigInteger.valueOf(1))
-    .initialCustomId(BigInteger.valueOf(10))
+  public static final Veterinary VETERINARY_1 = Veterinary.builder()
+    .identifier(BigInteger.valueOf(1))
     .name("name")
     .paid(true)
     .photo("photo")
     .build();
   
-  public static final CompanyDto COMPANY_DTO_2 = CompanyDto.builder()
-    .actualCustomId(BigInteger.valueOf(1))
-    .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-    .document("456-123-789")
-    .enabled(true)
+  public static final Veterinary VETERINARY_2 = Veterinary.builder()
+    .identifier(BigInteger.valueOf(2))
     .name("name")
     .paid(true)
     .build();
   
-  public static final UserDto USER_DTO_1 = UserDto.builder()
-    .company(COMPANY_DTO_1)
-    .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-    .document("123456789")
+  public static final SignUpUser SIGN_UP_USER_1 = SignUpUser.builder()
+    .veterinary(VETERINARY_1)
     .email("test@test.test")
-    .enabled(true)
-    .id(BigInteger.valueOf(1))
-    .lastName("lastName")
-    .name("name")
-    .password("password")
-    .phone("987654321")
+    .active(true)
+    .fullName("name lastName")
     .build();
   
-  public static final UserDto USER_DTO_2 = UserDto.builder()
-    .company(COMPANY_DTO_2)
-    .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-    .document("987654321")
+  public static final SignUpUser SIGN_UP_USER_2 = SignUpUser.builder()
+    .veterinary(VETERINARY_2)
     .email("create@test.test")
-    .enabled(true)
-    .lastName("test")
-    .name("create")
-    .password("password")
-    .phone("600000000")
+    .active(true)
+    .fullName("create test")
     .build();
 }

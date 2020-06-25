@@ -1,4 +1,4 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.repository.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OptimisticLocking;
@@ -10,31 +10,32 @@ import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
-@Entity(name = "pettype")
+@Entity(name = "drenching")
 @OptimisticLocking(type = DIRTY)
 @DynamicUpdate
 @SelectBeforeUpdate
-public class PetType extends CommonDataWithNameAndCompany {
+public class Drenching extends CommonDataWithNameAndCompany {
   
-  public PetType() {
+  //For hibernate
+  public Drenching() {
     super();
   }
   
-  protected PetType(Builder builder) {
+  protected Drenching(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   
   @Override
   public String toString() {
-    return "PetType{} " + super.toString();
+    return "Drenching{} " + super.toString();
   }
   
   public static Builder builder() {
     return new Builder();
   }
   
-  public static Builder builder(PetType petType) {
-    return new Builder(petType);
+  public static Builder builder(Drenching drenching) {
+    return new Builder(drenching);
   }
   
   public static class Builder {
@@ -49,9 +50,9 @@ public class PetType extends CommonDataWithNameAndCompany {
       super();
     }
     
-    private Builder(PetType petType) {
-      id(petType.getId()).creation(petType.getCreation()).enabled(petType.isEnabled()).name(petType.getName())
-        .company(petType.getCompany());
+    private Builder(Drenching drenching) {
+      id(drenching.getId()).creation(drenching.getCreation()).enabled(drenching.isEnabled())
+        .name(drenching.getName()).company(drenching.getCompany());
     }
     
     public Builder id(BigInteger id) {
@@ -79,8 +80,8 @@ public class PetType extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public PetType build() {
-      return new PetType(this);
+    public Drenching build() {
+      return new Drenching(this);
     }
   }
 }

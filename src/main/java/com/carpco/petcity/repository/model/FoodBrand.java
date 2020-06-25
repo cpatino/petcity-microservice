@@ -1,4 +1,4 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.repository.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OptimisticLocking;
@@ -10,31 +10,32 @@ import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
-@Entity(name = "vaccine")
+@Entity(name = "foodbrand")
 @OptimisticLocking(type = DIRTY)
 @DynamicUpdate
 @SelectBeforeUpdate
-public class Vaccine extends CommonDataWithNameAndCompany {
+public class FoodBrand extends CommonDataWithNameAndCompany {
   
-  public Vaccine() {
+  //For hibernate
+  public FoodBrand() {
     super();
   }
   
-  protected Vaccine(Builder builder) {
+  protected FoodBrand(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   
   @Override
   public String toString() {
-    return "Vaccine{} " + super.toString();
+    return "FoodBrand{} " + super.toString();
   }
   
   public static Builder builder() {
     return new Builder();
   }
   
-  public static Builder builder(Vaccine vaccine) {
-    return new Builder(vaccine);
+  public static Builder builder(FoodBrand foodBrand) {
+    return new Builder(foodBrand);
   }
   
   public static class Builder {
@@ -49,9 +50,9 @@ public class Vaccine extends CommonDataWithNameAndCompany {
       super();
     }
     
-    private Builder(Vaccine vaccine) {
-      id(vaccine.getId()).creation(vaccine.getCreation()).enabled(vaccine.isEnabled())
-        .name(vaccine.getName()).company(vaccine.getCompany());
+    private Builder(FoodBrand foodBrand) {
+      id(foodBrand.getId()).creation(foodBrand.getCreation()).enabled(foodBrand.isEnabled())
+        .name(foodBrand.getName()).company(foodBrand.getCompany());
     }
     
     public Builder id(BigInteger id) {
@@ -79,8 +80,8 @@ public class Vaccine extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public Vaccine build() {
-      return new Vaccine(this);
+    public FoodBrand build() {
+      return new FoodBrand(this);
     }
   }
 }

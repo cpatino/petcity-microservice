@@ -1,7 +1,7 @@
-package com.carpco.petcity.mapper;
+package com.carpco.petcity.dto.mapper;
 
-import com.carpco.petcity.dto.CompanyDto;
-import com.carpco.petcity.model.Company;
+import com.carpco.petcity.dto.Veterinary;
+import com.carpco.petcity.repository.model.Company;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,30 +12,24 @@ import java.time.LocalDateTime;
 import static java.time.LocalTime.MIDNIGHT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CompanyMapperTest {
+public class CompanyToVeterinaryMapperTest {
   
-  private CompanyMapper mapper;
+  private CompanyToVeterinaryMapper mapper;
   
   @BeforeEach
   public void setup() {
-    mapper = new CompanyMapper();
+    mapper = new CompanyToVeterinaryMapper();
   }
   
   @Test
   void whenMap_theReturnDAO() {
-    CompanyDto companyDto = buildCompanyDto();
-    Company company = mapper.map(companyDto);
-    assertEquals(buildCompany(), company);
+    Veterinary veterinary = mapper.map(buildCompany());
+    assertEquals(buildVeterinary(), veterinary);
   }
   
-  private CompanyDto buildCompanyDto() {
-    return CompanyDto.builder()
-      .actualCustomId(BigInteger.valueOf(1))
-      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-      .document("123-456-789")
-      .enabled(true)
-      .id(BigInteger.valueOf(1))
-      .initialCustomId(BigInteger.valueOf(1))
+  private Veterinary buildVeterinary() {
+    return Veterinary.builder()
+      .identifier(BigInteger.valueOf(1))
       .name("name")
       .paid(true)
       .photo("photo")

@@ -13,7 +13,7 @@ public abstract class LoginConstants {
   public static final String NEW_USER_LINK = "Nuevo usuario";
   public static final String REMEMBER_PASSWORD_LINK = "Olvide mi contraseña";
   public static final String INVALID_SIGN_IN_MESSAGE = "Datos erroneos! Usuario o contraseña incorrectos";
-  public static final String DISABLED_USER_MESSAGE = "El Usuario está desactivado, pongase en contacto con el proveedor.";
+  public static final String DISABLED_USER_MESSAGE = "El usuario o la veterinaria están desactivados, pongase en contacto con el proveedor.";
   
   private LoginConstants() {
     super();

@@ -1,12 +1,12 @@
 package com.carpco.petcity.service.admin;
 
-import com.carpco.petcity.dto.UserDto;
+import com.carpco.petcity.dto.SignUpUser;
 
 import java.util.Optional;
 
 public interface LoginService {
   
-  void registerSessionUser(UserDto userDto);
+  void registerSessionUser(SignUpUser signUpUser);
   
-  Optional<UserDto> login(String userName, String password);
+  Optional<SignUpUser> login(String userName, String password);
 }

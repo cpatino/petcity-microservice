@@ -1,12 +1,12 @@
 package com.carpco.petcity.service;
 
-import com.carpco.petcity.dto.UserDto;
+import com.carpco.petcity.repository.model.User;
 
 import java.util.Optional;
 
 public interface UserService {
   
-  Optional<UserDto> login(String userName, String password);
+  Optional<User> login(String userName, String password);
   
-  UserDto create(UserDto userDto);
+  User create(User user);
 }

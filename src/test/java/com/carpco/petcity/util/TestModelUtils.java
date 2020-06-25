@@ -1,7 +1,7 @@
 package com.carpco.petcity.util;
 
-import com.carpco.petcity.model.Company;
-import com.carpco.petcity.model.User;
+import com.carpco.petcity.repository.model.Company;
+import com.carpco.petcity.repository.model.User;
 
 import java.math.BigInteger;
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package com.carpco.petcity.view;
 
-import com.carpco.petcity.dto.UserDto;
+import com.carpco.petcity.dto.SignUpUser;
 import com.carpco.petcity.service.SessionService;
 import com.carpco.petcity.view.component.ConfirmDialog;
 import com.github.mvysny.kaributesting.v10.MockVaadin;
@@ -51,6 +51,6 @@ public class LoginViewTest {
   public void givenUserEnabled_whenLogin_ThenDoNotShowDialog() {
     loginView.signIn("test@test.test", "password");
     verify(confirmDialog, never()).show(anyString());
-    verify(sessionService).registerSessionUser(any(UserDto.class));
+    verify(sessionService).registerSessionUser(any(SignUpUser.class));
   }
 }

@@ -1,4 +1,4 @@
-package com.carpco.petcity.model;
+package com.carpco.petcity.repository.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OptimisticLocking;
@@ -10,31 +10,31 @@ import java.time.LocalDateTime;
 
 import static org.hibernate.annotations.OptimisticLockType.DIRTY;
 
-@Entity(name = "reproduction")
+@Entity(name = "pettype")
 @OptimisticLocking(type = DIRTY)
 @DynamicUpdate
 @SelectBeforeUpdate
-public class Reproduction extends CommonDataWithNameAndCompany {
+public class PetType extends CommonDataWithNameAndCompany {
   
-  public Reproduction() {
+  public PetType() {
     super();
   }
   
-  protected Reproduction(Builder builder) {
+  protected PetType(Builder builder) {
     super(builder.id, builder.creation, builder.enabled, builder.name, builder.company);
   }
   
   @Override
   public String toString() {
-    return "Reproduction{} " + super.toString();
+    return "PetType{} " + super.toString();
   }
   
   public static Builder builder() {
     return new Builder();
   }
   
-  public static Builder builder(Reproduction reproduction) {
-    return new Builder(reproduction);
+  public static Builder builder(PetType petType) {
+    return new Builder(petType);
   }
   
   public static class Builder {
@@ -49,9 +49,9 @@ public class Reproduction extends CommonDataWithNameAndCompany {
       super();
     }
     
-    private Builder(Reproduction reproduction) {
-      id(reproduction.getId()).creation(reproduction.getCreation()).enabled(reproduction.isEnabled())
-        .name(reproduction.getName()).company(reproduction.getCompany());
+    private Builder(PetType petType) {
+      id(petType.getId()).creation(petType.getCreation()).enabled(petType.isEnabled()).name(petType.getName())
+        .company(petType.getCompany());
     }
     
     public Builder id(BigInteger id) {
@@ -79,8 +79,8 @@ public class Reproduction extends CommonDataWithNameAndCompany {
       return this;
     }
     
-    public Reproduction build() {
-      return new Reproduction(this);
+    public PetType build() {
+      return new PetType(this);
     }
   }
 }
