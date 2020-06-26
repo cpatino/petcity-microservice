@@ -1,6 +1,6 @@
 package com.carpco.petcity.view.service;
 
-import com.carpco.petcity.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignUpUser;
 
 import java.util.Optional;
 

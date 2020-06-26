@@ -1,6 +1,6 @@
 package com.carpco.petcity.view.service.impl;
 
-import com.carpco.petcity.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignUpUser;
 import com.carpco.petcity.view.service.SessionService;
 import com.vaadin.flow.server.VaadinSession;
 import org.springframework.stereotype.Service;

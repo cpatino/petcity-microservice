@@ -1,6 +1,6 @@
-package com.carpco.petcity.dto.mapper;
+package com.carpco.petcity.business.dto.mapper;
 
-import com.carpco.petcity.dto.Veterinary;
+import com.carpco.petcity.business.dto.Veterinary;
 import com.carpco.petcity.repository.model.Company;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

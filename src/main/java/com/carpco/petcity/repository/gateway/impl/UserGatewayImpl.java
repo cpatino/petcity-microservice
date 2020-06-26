@@ -1,8 +1,8 @@
-package com.carpco.petcity.repository.service.impl;
+package com.carpco.petcity.repository.gateway.impl;
 
 import com.carpco.petcity.repository.UserRepository;
+import com.carpco.petcity.repository.gateway.UserGateway;
 import com.carpco.petcity.repository.model.User;
-import com.carpco.petcity.repository.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,11 +11,11 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserGatewayImpl implements UserGateway {
   
   private final UserRepository userRepository;
   
-  public UserServiceImpl(UserRepository userRepository) {
+  public UserGatewayImpl(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
   

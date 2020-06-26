@@ -1,6 +1,6 @@
-package com.carpco.petcity.dto.mapper;
+package com.carpco.petcity.business.dto.mapper;
 
-import com.carpco.petcity.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignUpUser;
 import com.carpco.petcity.repository.model.User;
 import org.springframework.stereotype.Component;
 

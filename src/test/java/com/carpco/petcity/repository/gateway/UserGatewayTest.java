@@ -1,8 +1,7 @@
-package com.carpco.petcity.service;
+package com.carpco.petcity.repository.gateway;
 
 import com.carpco.petcity.repository.UserRepository;
-import com.carpco.petcity.repository.service.UserService;
-import com.carpco.petcity.repository.service.impl.UserServiceImpl;
+import com.carpco.petcity.repository.gateway.impl.UserGatewayImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,15 +14,15 @@ import static com.carpco.petcity.util.TestModelUtils.USER_1;
 import static com.carpco.petcity.util.TestModelUtils.USER_2;
 import static org.mockito.Mockito.when;
 
-public class UserServiceTest {
+public class UserGatewayTest {
   
   @Mock private UserRepository userRepository;
-  private UserService userService;
+  private UserGateway userGateway;
   
   @BeforeEach
   public void setup() {
     MockitoAnnotations.initMocks(this);
-    userService = new UserServiceImpl(userRepository);
+    userGateway = new UserGatewayImpl(userRepository);
   }
   
   @Test
@@ -31,7 +30,7 @@ public class UserServiceTest {
     String userName = "xxx";
     String password = "xxx";
     when(userRepository.findByEmailAndPassword(userName, password)).thenReturn(Optional.of(USER_1));
-    userService.login(userName, password)
+    userGateway.login(userName, password)
       .ifPresent(userDtoResult -> Assertions.assertEquals(USER_1, userDtoResult));
   }
   
@@ -40,14 +39,14 @@ public class UserServiceTest {
     String userName = "xxx";
     String password = "xxx";
     when(userRepository.findByEmailAndPassword(userName, password)).thenReturn(Optional.empty());
-    Assertions.assertEquals(Optional.empty(), userService.login(userName, password));
+    Assertions.assertEquals(Optional.empty(), userGateway.login(userName, password));
   }
   
   @Test
   public void givenCreate_whenUserDtoIsValid_thenSaveData() {
     when(userRepository.save(USER_2)).thenReturn(USER_2);
     Optional.of(USER_2)
-      .map(userService::create)
+      .map(userGateway::create)
       .ifPresent(userDtoResult -> Assertions.assertEquals(USER_2, userDtoResult));
   }
 }

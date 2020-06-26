@@ -1,7 +1,7 @@
 package com.carpco.petcity.view;
 
-import com.carpco.petcity.dto.SignUpUser;
-import com.carpco.petcity.service.LoginService;
+import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.service.LoginService;
 import com.carpco.petcity.view.component.ConfirmDialog;
 import com.carpco.petcity.view.layout.MainLayout;
 import com.carpco.petcity.view.service.SessionService;

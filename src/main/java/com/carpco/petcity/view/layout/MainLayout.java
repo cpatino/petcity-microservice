@@ -1,6 +1,6 @@
 package com.carpco.petcity.view.layout;
 
-import com.carpco.petcity.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignUpUser;
 import com.carpco.petcity.view.constants.LoginConstants;
 import com.carpco.petcity.view.constants.RememberPasswordConstants;
 import com.carpco.petcity.view.constants.SignUpConstants;

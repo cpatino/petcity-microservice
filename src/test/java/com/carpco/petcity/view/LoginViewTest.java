@@ -1,6 +1,6 @@
 package com.carpco.petcity.view;
 
-import com.carpco.petcity.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignUpUser;
 import com.carpco.petcity.view.component.ConfirmDialog;
 import com.carpco.petcity.view.service.SessionService;
 import com.github.mvysny.kaributesting.v10.MockVaadin;

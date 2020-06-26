@@ -1,4 +1,4 @@
-package com.carpco.petcity.dto;
+package com.carpco.petcity.business.dto;
 
 import java.math.BigInteger;
 
