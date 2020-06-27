@@ -2,7 +2,7 @@ package com.carpco.petcity.business.service.impl;
 
 import com.carpco.petcity.business.dto.SignUpUser;
 import com.carpco.petcity.business.service.LoginService;
-import com.carpco.petcity.repository.gateway.UserGateway;
+import com.carpco.petcity.data.gateway.UserGateway;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
