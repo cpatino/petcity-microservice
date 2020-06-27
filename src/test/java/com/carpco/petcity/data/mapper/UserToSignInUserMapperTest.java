@@ -1,6 +1,6 @@
 package com.carpco.petcity.data.mapper;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.business.dto.Veterinary;
 import com.carpco.petcity.data.model.Company;
 import com.carpco.petcity.data.model.User;
@@ -17,22 +17,22 @@ import static java.time.LocalTime.MIDNIGHT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class UserToSignUpUserMapperTest {
+public class UserToSignInUserMapperTest {
   
   @Mock private CompanyToVeterinaryMapper companyToVeterinaryMapper;
-  private UserToSignUpUserMapper mapper;
+  private UserToSignInUserMapper mapper;
   
   @BeforeEach
   void setUp() {
     MockitoAnnotations.initMocks(this);
-    mapper = new UserToSignUpUserMapper(companyToVeterinaryMapper);
+    mapper = new UserToSignInUserMapper(companyToVeterinaryMapper);
   }
   
   @Test
   void whenMap_theReturnDAO() {
     when(companyToVeterinaryMapper.map(buildCompany())).thenReturn(buildVeterinary());
-    SignUpUser signUpUser = mapper.map(buildUser());
-    assertEquals(buildSignUpUser(), signUpUser);
+    SignInUser signInUser = mapper.map(buildUser());
+    assertEquals(buildSignUpUser(), signInUser);
   }
   
   private User buildUser() {
@@ -64,8 +64,8 @@ public class UserToSignUpUserMapperTest {
       .build();
   }
   
-  private SignUpUser buildSignUpUser() {
-    return SignUpUser.builder()
+  private SignInUser buildSignUpUser() {
+    return SignInUser.builder()
       .veterinary(buildVeterinary())
       .email("test@test.test")
       .active(true)

@@ -1,6 +1,6 @@
 package com.carpco.petcity.business.service.impl;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.business.service.LoginService;
 import com.carpco.petcity.data.gateway.UserGateway;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
   }
   
   @Override
-  public Optional<SignUpUser> login(String userName, String password) {
+  public Optional<SignInUser> login(String userName, String password) {
     return userGateway.login(userName, password);
   }
 }

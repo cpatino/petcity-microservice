@@ -1,6 +1,6 @@
 package com.carpco.petcity.gui.view;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.business.service.LoginService;
 import com.carpco.petcity.gui.component.ConfirmDialog;
 import com.carpco.petcity.gui.constants.LoginConstants;
@@ -65,7 +65,7 @@ public class LoginView extends VerticalLayout implements HasUrlParameter<String>
   protected void signIn(String userName, String password) {
     log.info("Checking login...");
     if (isNotEmpty(userName, password)) {
-      Optional<SignUpUser> userOptional = loginService.login(userName, password);
+      Optional<SignInUser> userOptional = loginService.login(userName, password);
       if (userOptional.isPresent()) {
         checkUserEnabled(userOptional.get());
       } else {
@@ -106,7 +106,7 @@ public class LoginView extends VerticalLayout implements HasUrlParameter<String>
     return passwordField;
   }
   
-  private void checkUserEnabled(SignUpUser user) {
+  private void checkUserEnabled(SignInUser user) {
     if (user.isActive() && user.getVeterinary().isPaid()) {
       navigateToMain(user);
     } else {
@@ -114,7 +114,7 @@ public class LoginView extends VerticalLayout implements HasUrlParameter<String>
     }
   }
   
-  private void navigateToMain(SignUpUser user) {
+  private void navigateToMain(SignInUser user) {
     log.info("User={} sign in correctly at {}", user.getEmail(), LocalDateTime.now());
     sessionService.registerSessionUser(user);
     UI.getCurrent().navigate(location);

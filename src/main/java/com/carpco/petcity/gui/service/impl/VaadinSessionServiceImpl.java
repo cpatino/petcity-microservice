@@ -1,6 +1,6 @@
 package com.carpco.petcity.gui.service.impl;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.gui.constants.AttributeConstants;
 import com.carpco.petcity.gui.service.SessionService;
 import com.vaadin.flow.server.VaadinSession;
@@ -12,14 +12,14 @@ import java.util.Optional;
 public class VaadinSessionServiceImpl implements SessionService {
   
   @Override
-  public Optional<SignUpUser> getSessionUser() {
+  public Optional<SignInUser> getSessionUser() {
     return Optional.of(VaadinSession.getCurrent())
       .map(session -> session.getAttribute(AttributeConstants.CLIENT))
-      .map(SignUpUser.class::cast);
+      .map(SignInUser.class::cast);
   }
   
   @Override
-  public void registerSessionUser(SignUpUser signUpUser) {
-    VaadinSession.getCurrent().setAttribute(AttributeConstants.CLIENT, signUpUser);
+  public void registerSessionUser(SignInUser signInUser) {
+    VaadinSession.getCurrent().setAttribute(AttributeConstants.CLIENT, signInUser);
   }
 }

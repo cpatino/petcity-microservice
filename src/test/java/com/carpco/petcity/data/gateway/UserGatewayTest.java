@@ -1,6 +1,6 @@
 package com.carpco.petcity.data.gateway;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.data.gateway.impl.UserGatewayImpl;
 import com.carpco.petcity.data.mapper.Mapper;
 import com.carpco.petcity.data.model.User;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class UserGatewayTest {
   
   @Mock private UserRepository userRepository;
-  @Mock private Mapper<SignUpUser, User> mapper;
+  @Mock private Mapper<SignInUser, User> mapper;
   private UserGateway userGateway;
   
   @BeforeEach

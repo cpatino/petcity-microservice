@@ -1,6 +1,6 @@
 package com.carpco.petcity.gui.view.layout;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.gui.constants.LoginConstants;
 import com.carpco.petcity.gui.constants.RememberPasswordConstants;
 import com.carpco.petcity.gui.constants.SignUpConstants;
@@ -23,7 +23,7 @@ public class MainLayout extends VerticalLayout implements RouterLayout, BeforeEn
   
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
-    SignUpUser client = (SignUpUser) VaadinSession.getCurrent().getAttribute(CLIENT);
+    SignInUser client = (SignInUser) VaadinSession.getCurrent().getAttribute(CLIENT);
     String path = event.getLocation().getPath();
     if (Objects.isNull(client) && !isNotSignedInPage(path)) {
       event.forwardTo(LoginConstants.ROUTE, path);

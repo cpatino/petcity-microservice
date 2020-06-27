@@ -1,6 +1,6 @@
 package com.carpco.petcity.data.gateway.impl;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.data.gateway.UserGateway;
 import com.carpco.petcity.data.mapper.Mapper;
 import com.carpco.petcity.data.model.User;
@@ -17,16 +17,16 @@ import java.util.Optional;
 public class UserGatewayImpl implements UserGateway {
   
   private final UserRepository userRepository;
-  @Qualifier("userToSignUpUser")
-  private final Mapper<SignUpUser, User> mapper;
+  @Qualifier("userToSignInUser")
+  private final Mapper<SignInUser, User> mapper;
   
-  public UserGatewayImpl(UserRepository userRepository, Mapper<SignUpUser, User> mapper) {
+  public UserGatewayImpl(UserRepository userRepository, Mapper<SignInUser, User> mapper) {
     this.userRepository = userRepository;
     this.mapper = mapper;
   }
   
   @Override
-  public Optional<SignUpUser> login(String userName, String password) {
+  public Optional<SignInUser> login(String userName, String password) {
     return userRepository.findByEmailAndPassword(userName, password)
       .map(mapper::map);
   }

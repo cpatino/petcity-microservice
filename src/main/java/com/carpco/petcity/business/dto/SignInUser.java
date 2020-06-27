@@ -1,21 +1,21 @@
 package com.carpco.petcity.business.dto;
 
-public class SignUpUser {
+public class SignInUser {
   
   private final String fullName;
   private final String email;
   private final Veterinary veterinary;
   private final boolean active;
   
-  public SignUpUser(Builder builder) {
+  public SignInUser(Builder builder) {
     fullName = builder.fullName;
     email = builder.email;
     veterinary = builder.veterinary;
     active = builder.active;
   }
   
-  public static Builder builder(SignUpUser signUpUser) {
-    return new Builder(signUpUser);
+  public static Builder builder(SignInUser signInUser) {
+    return new Builder(signInUser);
   }
   
   public String getEmail() {
@@ -38,8 +38,8 @@ public class SignUpUser {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    
-    SignUpUser that = (SignUpUser) o;
+  
+    SignInUser that = (SignInUser) o;
     
     if (!email.equals(that.email)) return false;
     return veterinary.equals(that.veterinary);
@@ -57,45 +57,45 @@ public class SignUpUser {
   }
   
   public static class Builder {
-    
+  
     private String fullName;
     private String email;
     private Veterinary veterinary;
     private boolean active;
-    
+  
     private Builder() {
       super();
     }
-    
-    private Builder(SignUpUser signUpUser) {
-      fullName(signUpUser.getFullName())
-        .email(signUpUser.email)
-        .veterinary(signUpUser.veterinary)
-        .active(signUpUser.isActive());
+  
+    private Builder(SignInUser signInUser) {
+      fullName(signInUser.getFullName())
+        .email(signInUser.email)
+        .veterinary(signInUser.veterinary)
+        .active(signInUser.isActive());
     }
-    
+  
     public Builder fullName(String fullName) {
       this.fullName = fullName;
       return this;
     }
-    
+  
     public Builder email(String email) {
       this.email = email;
       return this;
     }
-    
+  
     public Builder veterinary(Veterinary veterinary) {
       this.veterinary = veterinary;
       return this;
     }
-    
+  
     public Builder active(boolean active) {
       this.active = active;
       return this;
     }
-    
-    public SignUpUser build() {
-      return new SignUpUser(this);
+  
+    public SignInUser build() {
+      return new SignInUser(this);
     }
   }
 }

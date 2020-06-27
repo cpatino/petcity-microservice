@@ -1,6 +1,6 @@
 package com.carpco.petcity.util;
 
-import com.carpco.petcity.business.dto.SignUpUser;
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.business.dto.Veterinary;
 
 import java.math.BigInteger;
@@ -24,14 +24,14 @@ public abstract class DataTestDtoUtils {
     .paid(true)
     .build();
   
-  public static final SignUpUser SIGN_UP_USER_1 = SignUpUser.builder()
+  public static final SignInUser SIGN_UP_USER_1 = SignInUser.builder()
     .veterinary(VETERINARY_1)
     .email("test@test.test")
     .active(true)
     .fullName("name lastName")
     .build();
   
-  public static final SignUpUser SIGN_UP_USER_2 = SignUpUser.builder()
+  public static final SignInUser SIGN_UP_USER_2 = SignInUser.builder()
     .veterinary(VETERINARY_2)
     .email("create@test.test")
     .active(true)
