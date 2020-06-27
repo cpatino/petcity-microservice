@@ -1,4 +1,4 @@
-package com.carpco.petcity.business.dto.mapper;
+package com.carpco.petcity.repository.mapper;
 
 public interface Mapper<T, E> {
   

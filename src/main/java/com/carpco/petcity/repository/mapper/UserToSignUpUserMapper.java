@@ -1,10 +1,10 @@
-package com.carpco.petcity.business.dto.mapper;
+package com.carpco.petcity.repository.mapper;
 
 import com.carpco.petcity.business.dto.SignUpUser;
 import com.carpco.petcity.repository.model.User;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("userToSignUpUser")
 public class UserToSignUpUserMapper implements Mapper<SignUpUser, User> {
   
   private final CompanyToVeterinaryMapper companyToVeterinaryMapper;
