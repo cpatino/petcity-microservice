@@ -11,6 +11,7 @@ public class CompanyToVeterinaryMapper implements Mapper<Veterinary, Company> {
   public Veterinary map(Company company) {
     return Veterinary.builder()
       .identifier(company.getId())
+      .document(company.getDocument())
       .name(company.getName())
       .paid(company.isPaid())
       .photo(company.getPhoto())

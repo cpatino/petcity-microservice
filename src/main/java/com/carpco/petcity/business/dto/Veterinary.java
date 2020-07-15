@@ -1,23 +1,23 @@
 package com.carpco.petcity.business.dto;
 
+import javax.validation.constraints.NotEmpty;
 import java.math.BigInteger;
+import java.util.Objects;
 
 public class Veterinary {
   
   private final BigInteger identifier;
-  private final String name;
+  @NotEmpty private final String document;
+  @NotEmpty private final String name;
   private final boolean paid;
   private final String photo;
   
   public Veterinary(Builder builder) {
     identifier = builder.identifier;
+    document = builder.document;
     name = builder.name;
     paid = builder.paid;
     photo = builder.photo;
-  }
-  
-  public static Builder builder(Veterinary veterinary) {
-    return new Builder(veterinary);
   }
   
   public String getName() {
@@ -36,6 +36,18 @@ public class Veterinary {
     return identifier;
   }
   
+  public static Builder builder() {
+    return new Builder();
+  }
+  
+  public static Builder builder(Veterinary veterinary) {
+    return new Builder(veterinary);
+  }
+  
+  public String getDocument() {
+    return document;
+  }
+  
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -43,22 +55,22 @@ public class Veterinary {
     
     Veterinary that = (Veterinary) o;
     
-    return identifier.equals(that.identifier);
+    if (!Objects.equals(identifier, that.identifier)) return false;
+    return document.equals(that.document);
   }
   
   @Override
   public int hashCode() {
-    return identifier.hashCode();
-  }
-  
-  public static Builder builder() {
-    return new Builder();
+    int result = identifier != null ? identifier.hashCode() : 0;
+    result = 31 * result + document.hashCode();
+    return result;
   }
   
   @Override
   public String toString() {
     return "Veterinary{" +
       "identifier=" + identifier +
+      ", document='" + document + '\'' +
       ", name='" + name + '\'' +
       ", paid=" + paid +
       ", photo='" + photo + '\'' +
@@ -68,8 +80,9 @@ public class Veterinary {
   public static class Builder {
   
     private BigInteger identifier;
+    private String document;
     private String name;
-    private boolean paid;
+    private boolean paid = true;
     private String photo;
   
     private Builder() {
@@ -78,6 +91,7 @@ public class Veterinary {
   
     private Builder(Veterinary veterinary) {
       identifier(veterinary.getIdentifier())
+        .document(veterinary.getDocument())
         .name(veterinary.name)
         .paid(veterinary.paid)
         .photo(veterinary.photo);
@@ -85,6 +99,11 @@ public class Veterinary {
   
     public Builder identifier(BigInteger identifier) {
       this.identifier = identifier;
+      return this;
+    }
+  
+    public Builder document(String document) {
+      this.document = document;
       return this;
     }
   
