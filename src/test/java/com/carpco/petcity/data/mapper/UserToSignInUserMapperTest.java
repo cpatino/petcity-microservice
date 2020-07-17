@@ -1,19 +1,15 @@
 package com.carpco.petcity.data.mapper;
 
 import com.carpco.petcity.business.dto.SignInUser;
-import com.carpco.petcity.business.dto.Veterinary;
-import com.carpco.petcity.data.model.Company;
-import com.carpco.petcity.data.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import static java.time.LocalTime.MIDNIGHT;
+import static com.carpco.petcity.util.DataTestDtoUtils.SIGN_IN_USER_1;
+import static com.carpco.petcity.util.DataTestDtoUtils.VETERINARY_1;
+import static com.carpco.petcity.util.DataTestModelUtils.COMPANY_1;
+import static com.carpco.petcity.util.DataTestModelUtils.USER_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -30,55 +26,8 @@ public class UserToSignInUserMapperTest {
   
   @Test
   void whenMap_theReturnDAO() {
-    when(companyToVeterinaryMapper.map(buildCompany())).thenReturn(buildVeterinary());
-    SignInUser signInUser = mapper.map(buildUser());
-    assertEquals(buildSignUpUser(), signInUser);
-  }
-  
-  private User buildUser() {
-    return User.builder()
-      .company(buildCompany())
-      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-      .document("123456789")
-      .email("test@test.test")
-      .enabled(true)
-      .id(BigInteger.valueOf(1))
-      .lastName("lastName")
-      .name("name")
-      .password("password")
-      .phone("987654321")
-      .build();
-  }
-  
-  private Company buildCompany() {
-    return Company.builder()
-      .actualCustomId(BigInteger.valueOf(1))
-      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-      .document("123-456-789")
-      .enabled(true)
-      .id(BigInteger.valueOf(1))
-      .initialCustomId(BigInteger.valueOf(1))
-      .name("name")
-      .paid(true)
-      .photo("photo")
-      .build();
-  }
-  
-  private SignInUser buildSignUpUser() {
-    return SignInUser.builder()
-      .veterinary(buildVeterinary())
-      .email("test@test.test")
-      .active(true)
-      .fullName("name lastName")
-      .build();
-  }
-  
-  private Veterinary buildVeterinary() {
-    return Veterinary.builder()
-      .identifier(BigInteger.valueOf(1))
-      .name("name")
-      .paid(true)
-      .photo("photo")
-      .build();
+    when(companyToVeterinaryMapper.map(COMPANY_1)).thenReturn(VETERINARY_1);
+    SignInUser signInUser = mapper.map(USER_1);
+    assertEquals(SIGN_IN_USER_1, signInUser);
   }
 }
