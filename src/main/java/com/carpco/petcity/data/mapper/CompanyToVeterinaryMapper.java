@@ -5,7 +5,7 @@ import com.carpco.petcity.data.model.Company;
 import org.springframework.stereotype.Component;
 
 @Component("companyToVeterinary")
-public class CompanyToVeterinaryMapper implements Mapper<Veterinary, Company> {
+public class CompanyToVeterinaryMapper implements Mapper<Company, Veterinary> {
   
   @Override
   public Veterinary map(Company company) {

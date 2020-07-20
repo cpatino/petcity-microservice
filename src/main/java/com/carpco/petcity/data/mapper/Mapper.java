@@ -1,6 +1,9 @@
 package com.carpco.petcity.data.mapper;
 
-public interface Mapper<T, E> {
+import java.util.List;
+
+public interface Mapper<E, T> {
   
   T map(E fromObject);
+
 }
