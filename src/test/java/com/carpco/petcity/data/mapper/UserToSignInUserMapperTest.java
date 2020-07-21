@@ -19,7 +19,8 @@ import static org.mockito.Mockito.when;
 
 public class UserToSignInUserMapperTest {
   
-  @Mock private CompanyToVeterinaryMapper companyToVeterinaryMapper;
+  @Mock
+  private CompanyToVeterinaryMapper companyToVeterinaryMapper;
   private UserToSignInUserMapper mapper;
   
   @BeforeEach

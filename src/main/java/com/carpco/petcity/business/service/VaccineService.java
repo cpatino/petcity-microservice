@@ -3,10 +3,9 @@ package com.carpco.petcity.business.service;
 import com.carpco.petcity.business.dto.VaccineDto;
 import com.carpco.petcity.business.dto.Veterinary;
 
-import java.util.List;
-
+import java.util.Set;
 
 public interface VaccineService {
-
-  List<VaccineDto> listVaccine(Veterinary veterinary, boolean isEnabled);
+  
+  Set<VaccineDto> findVaccines(Veterinary veterinary, boolean enabled);
 }

@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class VaccineDto {
+
   @NotNull(message = "El nombre es obligatorio")
   private final String name;
 
@@ -35,24 +36,27 @@ public class VaccineDto {
   @Override
   public String toString() {
     return "VaccineDto{" +
-        "name='" + name + '\'' +
-        '}';
+      "name='" + name + '\'' +
+      '}';
   }
-
+  
   public static class Builder {
-
+    
     private String name;
-
-
+    
     private Builder() {
       super();
     }
-
+    
+    private Builder(VaccineDto vaccineDto) {
+      name(vaccineDto.getName());
+    }
+    
     public Builder name(String name) {
       this.name = name;
       return this;
     }
-
+    
     public VaccineDto build() {
       return new VaccineDto(this);
     }
