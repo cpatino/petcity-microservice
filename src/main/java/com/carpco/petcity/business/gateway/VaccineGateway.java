@@ -8,4 +8,6 @@ import java.util.Set;
 public interface VaccineGateway {
   
   Set<VaccineDto> findVaccines(Veterinary veterinary, boolean enabled);
+  
+  VaccineDto save(VaccineDto vaccine);
 }

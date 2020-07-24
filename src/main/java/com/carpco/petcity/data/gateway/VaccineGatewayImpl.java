@@ -19,10 +19,13 @@ class VaccineGatewayImpl implements VaccineGateway {
   
   @Qualifier("vaccineToVaccineDto")
   private final Mapper<Vaccine, VaccineDto> vaccineToVaccineDto;
+  @Qualifier("vaccineDtoToVaccine")
+  private final Mapper<VaccineDto, Vaccine> vaccineDtoToVaccine;
   
-  public VaccineGatewayImpl(VaccineRepository vaccineRepository, Mapper<Vaccine, VaccineDto> vaccineToVaccineDto) {
+  public VaccineGatewayImpl(VaccineRepository vaccineRepository, Mapper<Vaccine, VaccineDto> vaccineToVaccineDto, Mapper<VaccineDto, Vaccine> vaccineDtoToVaccine) {
     this.vaccineRepository = vaccineRepository;
     this.vaccineToVaccineDto = vaccineToVaccineDto;
+    this.vaccineDtoToVaccine = vaccineDtoToVaccine;
   }
   
   @Override
@@ -30,5 +33,12 @@ class VaccineGatewayImpl implements VaccineGateway {
     return vaccineRepository.findAllByCompanyIdAndEnabled(veterinary.getIdentifier(), enabled).stream()
       .map(vaccineToVaccineDto::map)
       .collect(Collectors.toSet());
+  }
+  
+  @Override
+  public VaccineDto save(VaccineDto vaccineDto) {
+    return vaccineToVaccineDto
+      .map(vaccineRepository
+        .save(vaccineDtoToVaccine.map(vaccineDto)));
   }
 }

@@ -27,16 +27,18 @@ public class VaccineGatewayTest {
   private VaccineRepository vaccineRepository;
   @Mock
   private Mapper<Vaccine, VaccineDto> vaccineToVaccineDto;
+  @Mock
+  private Mapper<VaccineDto, Vaccine> vaccineDtoToVaccine;
   private VaccineGateway vaccineGateway;
   
   @BeforeEach
   public void setup() {
     MockitoAnnotations.initMocks(this);
-    vaccineGateway = new VaccineGatewayImpl(vaccineRepository, vaccineToVaccineDto);
+    vaccineGateway = new VaccineGatewayImpl(vaccineRepository, vaccineToVaccineDto, vaccineDtoToVaccine);
   }
   
   @Test
-  public void whenRightCompanyAndEnabled_thenReturnVaccines() {
+  public void whenCompanyWithVaccines_thenReturnVaccines() {
     when(vaccineRepository.findAllByCompanyIdAndEnabled(BigInteger.valueOf(1), true)).
       thenReturn(Streamable.of(VACCINE_1, VACCINE_2));
     when(vaccineToVaccineDto.map(VACCINE_1)).thenReturn(VACCINE_DTO_1);
@@ -46,10 +48,18 @@ public class VaccineGatewayTest {
   }
   
   @Test
-  public void whenRightCompanyAndEnabled_thenReturnEmptyVaccines() {
+  public void whenCompanyWithoutVaccines_thenReturnEmptyVaccines() {
     when(vaccineRepository.findAllByCompanyIdAndEnabled(BigInteger.valueOf(1), true))
       .thenReturn(Streamable.empty());
     when(vaccineToVaccineDto.map(VACCINE_1)).thenReturn(VACCINE_DTO_1);
     assertEquals(vaccineGateway.findVaccines(VETERINARY_1, true), Collections.EMPTY_SET);
+  }
+  
+  @Test
+  public void whenRightNameAndCompany_thenSaveVaccine() {
+    when(vaccineRepository.save(VACCINE_1)).thenReturn(VACCINE_1);
+    when(vaccineToVaccineDto.map(VACCINE_1)).thenReturn(VACCINE_DTO_1);
+    when(vaccineDtoToVaccine.map(VACCINE_DTO_1)).thenReturn(VACCINE_1);
+    assertEquals(vaccineGateway.save(VACCINE_DTO_1), VACCINE_DTO_1);
   }
 }

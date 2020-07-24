@@ -23,7 +23,7 @@ public class DataTestModelUtils {
     .enabled(true)
     .id(BigInteger.valueOf(1))
     .initialCustomId(BigInteger.valueOf(10))
-    .name("name")
+    .name("veterinary1")
     .paid(true)
     .photo("photo")
     .build();

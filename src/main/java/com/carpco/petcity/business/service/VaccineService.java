@@ -8,4 +8,6 @@ import java.util.Set;
 public interface VaccineService {
   
   Set<VaccineDto> findVaccines(Veterinary veterinary, boolean enabled);
+  
+  VaccineDto save(VaccineDto vaccineDto);
 }

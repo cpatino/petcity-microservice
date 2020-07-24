@@ -1,61 +1,36 @@
 package com.carpco.petcity.data.mapper;
 
 import com.carpco.petcity.business.dto.VaccineDto;
+import com.carpco.petcity.business.dto.Veterinary;
 import com.carpco.petcity.data.model.Company;
 import com.carpco.petcity.data.model.Vaccine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import static java.time.LocalTime.MIDNIGHT;
+import static com.carpco.petcity.util.DataTestDtoUtils.VACCINE_DTO_1;
+import static com.carpco.petcity.util.DataTestDtoUtils.VETERINARY_1;
+import static com.carpco.petcity.util.DataTestModelUtils.COMPANY_1;
+import static com.carpco.petcity.util.DataTestModelUtils.VACCINE_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class VaccineToVaccineDtoMapperTest {
   
-  private VaccineToVaccineDtoMapper vaccineToVaccineDto;
+  private Mapper<Vaccine, VaccineDto> vaccineToVaccineDto;
+  @Mock
+  private Mapper<Company, Veterinary> companyToVeterinary;
   
   @BeforeEach
   public void setup() {
     MockitoAnnotations.initMocks(this);
-    vaccineToVaccineDto = new VaccineToVaccineDtoMapper();
+    vaccineToVaccineDto = new VaccineToVaccineDtoMapper(companyToVeterinary);
   }
   
   @Test
   public void whenMap_thenReturnDto() {
-    assertEquals(vaccineToVaccineDto.map(buildVaccineDao()), buildVaccineDto());
-  }
-  
-  private VaccineDto buildVaccineDto() {
-    return VaccineDto.builder()
-      .name("vaccine")
-      .build();
-  }
-  
-  private Vaccine buildVaccineDao() {
-    return Vaccine.builder()
-      .id(BigInteger.valueOf(1))
-      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-      .enabled(true)
-      .name("vaccine")
-      .company(buildCompany())
-      .build();
-  }
-  
-  private Company buildCompany() {
-    return Company.builder()
-      .actualCustomId(BigInteger.valueOf(1))
-      .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
-      .document("123-456-789")
-      .enabled(true)
-      .id(BigInteger.valueOf(1))
-      .initialCustomId(BigInteger.valueOf(1))
-      .name("name")
-      .paid(true)
-      .photo("photo")
-      .build();
+    when(companyToVeterinary.map(COMPANY_1)).thenReturn(VETERINARY_1);
+    assertEquals(vaccineToVaccineDto.map(VACCINE_1), VACCINE_DTO_1);
   }
 }
