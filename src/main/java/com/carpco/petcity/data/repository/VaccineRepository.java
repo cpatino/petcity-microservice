@@ -11,4 +11,6 @@ import java.math.BigInteger;
 public interface VaccineRepository extends JpaRepository<Vaccine, BigInteger> {
   
   Streamable<Vaccine> findAllByCompanyIdAndEnabled(BigInteger companyId, boolean enabled);
+  
+  Vaccine findByCompanyIdAndNameAndEnabled(BigInteger companyId, String name, boolean enabled);
 }

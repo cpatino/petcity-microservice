@@ -27,9 +27,9 @@ public class VaccineServiceImplTest {
   
   @Test
   public void whenVeterinaryWithVaccines_thenReturnVaccines() {
-    when(vaccineGateway.findVaccines(VETERINARY_1, true))
+    when(vaccineGateway.find(VETERINARY_1, true))
       .thenReturn(ImmutableSet.of(VACCINE_DTO_1, VACCINE_DTO_2));
-    assertEquals(vaccineService.findVaccines(VETERINARY_1, true),
+    assertEquals(vaccineService.find(VETERINARY_1, true),
       ImmutableSet.of(VACCINE_DTO_1, VACCINE_DTO_2));
   }
   

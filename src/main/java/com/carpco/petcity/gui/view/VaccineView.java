@@ -27,7 +27,7 @@ public class VaccineView {
     log.info("Checking findVaccines...");
     Veterinary veterinary = sessionService.getVeterinary()
       .orElseThrow(RuntimeException::new);//FIX THIS
-    return vaccineService.findVaccines(veterinary, true);
+    return vaccineService.find(veterinary, true);
   }
   
   protected VaccineDto save(VaccineDto vaccineDto) {

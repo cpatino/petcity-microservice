@@ -18,12 +18,17 @@ class VaccineServiceImpl implements VaccineService {
   }
   
   @Override
-  public Set<VaccineDto> findVaccines(Veterinary veterinary, boolean enabled) {
-    return vaccineGateway.findVaccines(veterinary, enabled);
+  public Set<VaccineDto> find(Veterinary veterinary, boolean enabled) {
+    return vaccineGateway.find(veterinary, enabled);
   }
   
   @Override
   public VaccineDto save(VaccineDto vaccineDto) {
     return vaccineGateway.save(vaccineDto);
+  }
+  
+  @Override
+  public VaccineDto findByName(Veterinary veterinary, String name, boolean enabled) {
+    return vaccineGateway.findByName(veterinary, name, enabled);
   }
 }

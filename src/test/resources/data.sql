@@ -43,11 +43,11 @@ CREATE TABLE vaccine (
 
 
 INSERT INTO company (id, document, name, paid, creation, enabled, photo, initialcustomid, actualcustomid) VALUES
-(1, '123-456-789', 'name', '1', '2016-10-24 18:01:53', '1', 'photo', 10, 11);
+(1, '123-456-789', 'veterinary1', '1', '2016-10-24 18:01:53', '1', 'photo', 10, 11);
 INSERT INTO company (id, document, name, paid, creation, enabled, photo, initialcustomid, actualcustomid) VALUES
-(2, '987-321-654', 'name2', '1', '2017-10-24 18:01:53', '1', 'photo', 12, 13);
+(2, '987-321-654', 'veterinary2', '1', '2017-10-24 18:01:53', '1', 'photo', 12, 13);
 INSERT INTO company (id, document, name, paid, creation, enabled, photo, initialcustomid, actualcustomid) VALUES
-(3, '456-423-123', 'name3', '1', '2018-10-24 18:01:53', '1', 'photo', 14, 15);
+(3, '456-423-123', 'veterinary3', '1', '2018-10-24 18:01:53', '1', 'photo', 14, 15);
 
 
 

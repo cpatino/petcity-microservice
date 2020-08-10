@@ -9,6 +9,7 @@ import com.carpco.petcity.data.repository.VaccineRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ class VaccineGatewayImpl implements VaccineGateway {
   }
   
   @Override
-  public Set<VaccineDto> findVaccines(Veterinary veterinary, boolean enabled) {
+  public Set<VaccineDto> find(Veterinary veterinary, boolean enabled) {
     return vaccineRepository.findAllByCompanyIdAndEnabled(veterinary.getIdentifier(), enabled).stream()
       .map(vaccineToVaccineDto::map)
       .collect(Collectors.toSet());
@@ -37,8 +38,18 @@ class VaccineGatewayImpl implements VaccineGateway {
   
   @Override
   public VaccineDto save(VaccineDto vaccineDto) {
-    return vaccineToVaccineDto
-      .map(vaccineRepository
-        .save(vaccineDtoToVaccine.map(vaccineDto)));
+    return Optional.of(vaccineDto)
+      .map(vaccineDtoToVaccine::map)
+      .map(vaccineRepository::save)
+      .map(vaccineToVaccineDto::map)
+      .orElseThrow(RuntimeException::new);
+  }
+  
+  @Override
+  public VaccineDto findByName(Veterinary veterinary, String name, boolean enabled) {
+    return Optional.of(vaccineRepository
+      .findByCompanyIdAndNameAndEnabled(veterinary.getIdentifier(), name, enabled))
+      .map(vaccineToVaccineDto::map)
+      .orElseThrow(RuntimeException::new);
   }
 }

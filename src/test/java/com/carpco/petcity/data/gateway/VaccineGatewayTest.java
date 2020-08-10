@@ -43,7 +43,7 @@ public class VaccineGatewayTest {
       thenReturn(Streamable.of(VACCINE_1, VACCINE_2));
     when(vaccineToVaccineDto.map(VACCINE_1)).thenReturn(VACCINE_DTO_1);
     when(vaccineToVaccineDto.map(VACCINE_2)).thenReturn(VACCINE_DTO_2);
-    assertEquals(vaccineGateway.findVaccines(VETERINARY_1, true),
+    assertEquals(vaccineGateway.find(VETERINARY_1, true),
       ImmutableSet.of(VACCINE_DTO_1, VACCINE_DTO_2));
   }
   
@@ -52,7 +52,7 @@ public class VaccineGatewayTest {
     when(vaccineRepository.findAllByCompanyIdAndEnabled(BigInteger.valueOf(1), true))
       .thenReturn(Streamable.empty());
     when(vaccineToVaccineDto.map(VACCINE_1)).thenReturn(VACCINE_DTO_1);
-    assertEquals(vaccineGateway.findVaccines(VETERINARY_1, true), Collections.EMPTY_SET);
+    assertEquals(vaccineGateway.find(VETERINARY_1, true), Collections.EMPTY_SET);
   }
   
   @Test

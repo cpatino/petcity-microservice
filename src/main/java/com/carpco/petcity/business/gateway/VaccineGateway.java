@@ -7,7 +7,9 @@ import java.util.Set;
 
 public interface VaccineGateway {
   
-  Set<VaccineDto> findVaccines(Veterinary veterinary, boolean enabled);
+  Set<VaccineDto> find(Veterinary veterinary, boolean enabled);
   
   VaccineDto save(VaccineDto vaccine);
+  
+  VaccineDto findByName(Veterinary veterinary, String name, boolean enabled);
 }
