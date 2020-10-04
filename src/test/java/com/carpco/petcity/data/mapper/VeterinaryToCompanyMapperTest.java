@@ -2,24 +2,26 @@ package com.carpco.petcity.data.mapper;
 
 import com.carpco.petcity.business.dto.Veterinary;
 import com.carpco.petcity.data.model.Company;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.carpco.petcity.util.DataTestDtoUtils.VETERINARY_1;
 import static com.carpco.petcity.util.DataTestModelUtils.COMPANY_1;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CompanyToVeterinaryMapperTest {
+public class VeterinaryToCompanyMapperTest {
   
-  private Mapper<Company, Veterinary> mapper;
+  private Mapper<Veterinary, Company> mapper;
   
   @BeforeEach
   public void setup() {
-    mapper = new CompanyToVeterinaryMapper();
+    mapper = new VeterinaryToCompanyMapper();
   }
   
   @Test
-  void whenMapDao_theReturnDto() {
-    assertEquals(mapper.map(COMPANY_1), VETERINARY_1);
+  void whenMapDto_theReturnDao() {
+    Assertions.assertThat(mapper.map(VETERINARY_1))
+      .isEqualToComparingOnlyGivenFields(COMPANY_1,
+        "id", "name", "paid", "photo");
   }
 }

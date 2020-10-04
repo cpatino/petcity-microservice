@@ -1,4 +1,4 @@
-package com.carpco.petcity.data.gateway;
+package com.carpco.petcity.business.gateway;
 
 import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.data.model.User;

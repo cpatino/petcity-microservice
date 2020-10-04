@@ -1,7 +1,7 @@
-package com.carpco.petcity.data.gateway.impl;
+package com.carpco.petcity.data.gateway;
 
 import com.carpco.petcity.business.dto.SignInUser;
-import com.carpco.petcity.data.gateway.UserGateway;
+import com.carpco.petcity.business.gateway.UserGateway;
 import com.carpco.petcity.data.mapper.Mapper;
 import com.carpco.petcity.data.model.User;
 import com.carpco.petcity.data.repository.UserRepository;
@@ -18,9 +18,9 @@ public class UserGatewayImpl implements UserGateway {
   
   private final UserRepository userRepository;
   @Qualifier("userToSignInUser")
-  private final Mapper<SignInUser, User> mapper;
+  private final Mapper<User, SignInUser> mapper;
   
-  public UserGatewayImpl(UserRepository userRepository, Mapper<SignInUser, User> mapper) {
+  public UserGatewayImpl(UserRepository userRepository, Mapper<User, SignInUser> mapper) {
     this.userRepository = userRepository;
     this.mapper = mapper;
   }

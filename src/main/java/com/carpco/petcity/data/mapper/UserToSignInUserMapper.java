@@ -5,21 +5,21 @@ import com.carpco.petcity.data.model.User;
 import org.springframework.stereotype.Component;
 
 @Component("userToSignInUser")
-public class UserToSignInUserMapper implements Mapper<SignInUser, User> {
-  
+public class UserToSignInUserMapper implements Mapper<User, SignInUser> {
+
   private final CompanyToVeterinaryMapper companyToVeterinaryMapper;
-  
+
   public UserToSignInUserMapper(CompanyToVeterinaryMapper companyToVeterinaryMapper) {
     this.companyToVeterinaryMapper = companyToVeterinaryMapper;
   }
-  
+
   @Override
   public SignInUser map(User user) {
     return SignInUser.builder()
-      .fullName(user.getName() + " " + user.getLastName())
-      .email(user.getEmail())
-      .veterinary(companyToVeterinaryMapper.map(user.getCompany()))
-      .active(user.isEnabled())
-      .build();
+        .fullName(user.getName() + " " + user.getLastName())
+        .email(user.getEmail())
+        .veterinary(companyToVeterinaryMapper.map(user.getCompany()))
+        .active(user.isEnabled())
+        .build();
   }
 }

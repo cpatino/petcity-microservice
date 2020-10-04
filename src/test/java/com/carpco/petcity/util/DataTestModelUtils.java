@@ -2,6 +2,7 @@ package com.carpco.petcity.util;
 
 import com.carpco.petcity.data.model.Company;
 import com.carpco.petcity.data.model.User;
+import com.carpco.petcity.data.model.Vaccine;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -22,7 +23,7 @@ public class DataTestModelUtils {
     .enabled(true)
     .id(BigInteger.valueOf(1))
     .initialCustomId(BigInteger.valueOf(10))
-    .name("name")
+    .name("veterinary1")
     .paid(true)
     .photo("photo")
     .build();
@@ -61,5 +62,30 @@ public class DataTestModelUtils {
     .name("create")
     .password("password")
     .phone("600000000")
+    .build();
+  
+  
+  public static final Vaccine VACCINE_1 = Vaccine.builder()
+    .id(BigInteger.valueOf(1))
+    .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
+    .enabled(true)
+    .name("vaccine1")
+    .company(COMPANY_1)
+    .build();
+  
+  public static final Vaccine VACCINE_2 = Vaccine.builder()
+    .id(BigInteger.valueOf(2))
+    .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
+    .enabled(true)
+    .name("vaccine2")
+    .company(COMPANY_1)
+    .build();
+  
+  public static final Vaccine VACCINE_3 = Vaccine.builder()
+    .id(BigInteger.valueOf(3))
+    .creation(LocalDateTime.of(LocalDate.now(), MIDNIGHT))
+    .enabled(true)
+    .name("vaccine3")
+    .company(COMPANY_2)
     .build();
 }
