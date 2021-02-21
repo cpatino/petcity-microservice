@@ -6,7 +6,6 @@ import com.carpco.petcity.business.gateway.VaccineGateway;
 import com.carpco.petcity.data.mapper.Mapper;
 import com.carpco.petcity.data.model.Vaccine;
 import com.carpco.petcity.data.repository.VaccineRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,13 +16,11 @@ import java.util.stream.Collectors;
 class VaccineGatewayImpl implements VaccineGateway {
   
   private final VaccineRepository vaccineRepository;
-  
-  @Qualifier("vaccineToVaccineDto")
   private final Mapper<Vaccine, VaccineDto> vaccineToVaccineDto;
-  @Qualifier("vaccineDtoToVaccine")
   private final Mapper<VaccineDto, Vaccine> vaccineDtoToVaccine;
   
-  public VaccineGatewayImpl(VaccineRepository vaccineRepository, Mapper<Vaccine, VaccineDto> vaccineToVaccineDto, Mapper<VaccineDto, Vaccine> vaccineDtoToVaccine) {
+  public VaccineGatewayImpl(VaccineRepository vaccineRepository, Mapper<Vaccine, VaccineDto> vaccineToVaccineDto,
+                            Mapper<VaccineDto, Vaccine> vaccineDtoToVaccine) {
     this.vaccineRepository = vaccineRepository;
     this.vaccineToVaccineDto = vaccineToVaccineDto;
     this.vaccineDtoToVaccine = vaccineDtoToVaccine;

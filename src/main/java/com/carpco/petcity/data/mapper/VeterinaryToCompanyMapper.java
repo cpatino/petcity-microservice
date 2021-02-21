@@ -4,7 +4,7 @@ import com.carpco.petcity.business.dto.Veterinary;
 import com.carpco.petcity.data.model.Company;
 import org.springframework.stereotype.Component;
 
-@Component("veterinaryToCompany")
+@Component
 public class VeterinaryToCompanyMapper implements Mapper<Veterinary, Company> {
   
   @Override

@@ -1,5 +1,6 @@
 package com.carpco.petcity.gui.view;
 
+import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.business.dto.VaccineDto;
 import com.carpco.petcity.business.dto.Veterinary;
 import com.carpco.petcity.business.service.VaccineService;
@@ -15,8 +16,8 @@ public class VaccineView {
   
   private static final Logger log = LoggerFactory.getLogger(VaccineView.class);
   
-  private final transient VaccineService vaccineService;
-  private final transient SessionService sessionService;
+  private final VaccineService vaccineService;
+  private final SessionService sessionService;
   
   public VaccineView(VaccineService vaccineService, SessionService sessionService) {
     this.vaccineService = vaccineService;
@@ -25,8 +26,9 @@ public class VaccineView {
   
   protected Set<VaccineDto> findVaccines() {
     log.info("Checking findVaccines...");
-    Veterinary veterinary = sessionService.getVeterinary()
-      .orElseThrow(RuntimeException::new);//FIX THIS
+    Veterinary veterinary = sessionService.getSessionUser()
+      .map(SignInUser::getVeterinary)
+      .orElse(Veterinary.builder().build());
     return vaccineService.find(veterinary, true);
   }
   
