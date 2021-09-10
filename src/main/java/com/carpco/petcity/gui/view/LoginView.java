@@ -1,9 +1,9 @@
 package com.carpco.petcity.gui.view;
 
-import com.carpco.petcity.business.dto.SignInUser;
-import com.carpco.petcity.business.service.LoginService;
+import com.carpco.petcity.domain.service.LoginService;
 import com.carpco.petcity.gui.component.ConfirmDialog;
 import com.carpco.petcity.gui.constants.LoginConstants;
+import com.carpco.petcity.gui.dto.SignInUser;
 import com.carpco.petcity.gui.service.SessionService;
 import com.carpco.petcity.gui.view.layout.MainLayout;
 import com.vaadin.flow.component.HasValidation;

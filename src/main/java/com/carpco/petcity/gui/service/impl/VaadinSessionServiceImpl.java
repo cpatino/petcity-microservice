@@ -1,7 +1,7 @@
 package com.carpco.petcity.gui.service.impl;
 
-import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.gui.constants.AttributeConstants;
+import com.carpco.petcity.gui.dto.SignInUser;
 import com.carpco.petcity.gui.service.SessionService;
 import com.vaadin.flow.server.VaadinSession;
 import org.springframework.stereotype.Service;

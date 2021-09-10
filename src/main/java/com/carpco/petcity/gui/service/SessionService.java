@@ -1,6 +1,6 @@
 package com.carpco.petcity.gui.service;
 
-import com.carpco.petcity.business.dto.SignInUser;
+import com.carpco.petcity.gui.dto.SignInUser;
 
 import java.util.Optional;
 

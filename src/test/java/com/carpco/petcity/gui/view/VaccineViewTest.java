@@ -1,7 +1,7 @@
 package com.carpco.petcity.gui.view;
 
-import com.carpco.petcity.business.dto.VaccineDto;
-import com.carpco.petcity.business.service.VaccineService;
+import com.carpco.petcity.domain.service.VaccineService;
+import com.carpco.petcity.gui.dto.VaccineDto;
 import com.carpco.petcity.gui.service.SessionService;
 import com.github.mvysny.kaributesting.v10.MockVaadin;
 import com.github.mvysny.kaributesting.v10.Routes;

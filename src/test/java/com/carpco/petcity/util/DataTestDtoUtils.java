@@ -1,9 +1,9 @@
 package com.carpco.petcity.util;
 
-import com.carpco.petcity.business.dto.SignInUser;
-import com.carpco.petcity.business.dto.SignUpUser;
-import com.carpco.petcity.business.dto.VaccineDto;
-import com.carpco.petcity.business.dto.Veterinary;
+import com.carpco.petcity.gui.dto.SignInUser;
+import com.carpco.petcity.gui.dto.SignUpUser;
+import com.carpco.petcity.gui.dto.VaccineDto;
+import com.carpco.petcity.gui.dto.Veterinary;
 
 import java.math.BigInteger;
 

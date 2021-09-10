@@ -1,9 +1,9 @@
 package com.carpco.petcity.gui.view.layout;
 
-import com.carpco.petcity.business.dto.SignInUser;
 import com.carpco.petcity.gui.constants.LoginConstants;
 import com.carpco.petcity.gui.constants.RememberPasswordConstants;
 import com.carpco.petcity.gui.constants.SignUpConstants;
+import com.carpco.petcity.gui.dto.SignInUser;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;

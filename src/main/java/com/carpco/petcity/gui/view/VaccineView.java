@@ -1,9 +1,9 @@
 package com.carpco.petcity.gui.view;
 
-import com.carpco.petcity.business.dto.SignInUser;
-import com.carpco.petcity.business.dto.VaccineDto;
-import com.carpco.petcity.business.dto.Veterinary;
-import com.carpco.petcity.business.service.VaccineService;
+import com.carpco.petcity.domain.service.VaccineService;
+import com.carpco.petcity.gui.dto.SignInUser;
+import com.carpco.petcity.gui.dto.VaccineDto;
+import com.carpco.petcity.gui.dto.Veterinary;
 import com.carpco.petcity.gui.service.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

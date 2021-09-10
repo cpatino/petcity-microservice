@@ -1,8 +1,8 @@
 package com.carpco.petcity.util;
 
-import com.carpco.petcity.data.model.Company;
-import com.carpco.petcity.data.model.User;
-import com.carpco.petcity.data.model.Vaccine;
+import com.carpco.petcity.infrastructure.database.entity.Company;
+import com.carpco.petcity.infrastructure.database.entity.User;
+import com.carpco.petcity.infrastructure.database.entity.Vaccine;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
