@@ -26,7 +26,7 @@ public class VaccineView {
   
   protected Set<VaccineDto> findVaccines() {
     log.info("Checking findVaccines...");
-    Veterinary veterinary = sessionService.getSessionUser()
+    Veterinary veterinary = sessionService.fetchSessionUser()
       .map(SignInUser::getVeterinary)
       .orElse(Veterinary.builder().build());
     return vaccineService.find(veterinary, true);

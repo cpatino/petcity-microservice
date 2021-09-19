@@ -14,10 +14,6 @@ public class SignInUser {
     active = builder.active;
   }
   
-  public static Builder builder(SignInUser signInUser) {
-    return new Builder(signInUser);
-  }
-  
   public String getEmail() {
     return email;
   }
@@ -34,17 +30,6 @@ public class SignInUser {
     return active;
   }
   
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-  
-    SignInUser that = (SignInUser) o;
-    
-    if (!email.equals(that.email)) return false;
-    return veterinary.equals(that.veterinary);
-  }
-  
   public static Builder builder() {
     return new Builder();
   }
@@ -56,44 +41,59 @@ public class SignInUser {
     return result;
   }
   
-  public static class Builder {
+  public static Builder builder(SignInUser signInUser) {
+    return new Builder(signInUser);
+  }
   
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    
+    SignInUser that = (SignInUser) o;
+    
+    if (!email.equals(that.email)) return false;
+    return veterinary.equals(that.veterinary);
+  }
+  
+  public static class Builder {
+    
     private String fullName;
     private String email;
     private Veterinary veterinary;
     private boolean active;
-  
+    
     private Builder() {
       super();
     }
-  
+    
     private Builder(SignInUser signInUser) {
       fullName(signInUser.getFullName())
         .email(signInUser.email)
         .veterinary(signInUser.veterinary)
         .active(signInUser.isActive());
     }
-  
+    
     public Builder fullName(String fullName) {
       this.fullName = fullName;
       return this;
     }
-  
+    
     public Builder email(String email) {
       this.email = email;
       return this;
     }
-  
+    
     public Builder veterinary(Veterinary veterinary) {
       this.veterinary = veterinary;
       return this;
     }
-  
+    
     public Builder active(boolean active) {
       this.active = active;
       return this;
     }
-  
+    
     public SignInUser build() {
       return new SignInUser(this);
     }

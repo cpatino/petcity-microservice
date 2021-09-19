@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface SessionService {
   
-  Optional<SignInUser> getSessionUser();
+  Optional<SignInUser> fetchSessionUser();
   
   void registerSessionUser(SignInUser signInUser);
 }

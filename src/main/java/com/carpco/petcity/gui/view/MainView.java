@@ -17,6 +17,6 @@ import org.springframework.stereotype.Component;
 public class MainView extends Div {
   
   public MainView(SessionService sessionService) {
-    add(new H4("Welcome " + sessionService.getSessionUser().map(SignInUser::getFullName).orElse("") + "!"));
+    add(new H4("Welcome " + sessionService.fetchSessionUser().map(SignInUser::getFullName).orElse("") + "!"));
   }
 }
