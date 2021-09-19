@@ -1,8 +1,8 @@
 package com.carpco.petcity.infrastructure.database.gateway;
 
-import com.carpco.petcity.domain.gateway.UserGateway;
 import com.carpco.petcity.gui.dto.SignInUser;
 import com.carpco.petcity.gui.dto.SignUpUser;
+import com.carpco.petcity.gui.gateway.UserGateway;
 import com.carpco.petcity.infrastructure.database.entity.User;
 import com.carpco.petcity.infrastructure.database.mapper.Mapper;
 import com.carpco.petcity.infrastructure.database.repository.UserRepository;
@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-public class UserGatewayImpl implements UserGateway {
+class UserGatewayImpl implements UserGateway {
   
   private final UserRepository userRepository;
   private final Mapper<User, SignInUser> userToSignInUser;

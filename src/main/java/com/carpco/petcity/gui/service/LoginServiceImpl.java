@@ -1,7 +1,7 @@
-package com.carpco.petcity.domain.service;
+package com.carpco.petcity.gui.service;
 
-import com.carpco.petcity.domain.gateway.UserGateway;
 import com.carpco.petcity.gui.dto.SignInUser;
+import com.carpco.petcity.gui.gateway.UserGateway;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
